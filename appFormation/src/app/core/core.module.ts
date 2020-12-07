@@ -5,8 +5,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   declarations: [HeaderComponent, NavbarComponent, FooterComponent],
   imports: [

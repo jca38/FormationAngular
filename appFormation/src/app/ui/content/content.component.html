@@ -1,5 +1,8 @@
+<!-- NOTRE SQUELETTE DE PAGE POUR TOUTES NOS PAGES DE L'APPLICATION (REUTILILSABLE POUR TOUTES NOS APPLICATIONS) -->
+
 <header class="fixed-top">
   <app-icon-nav (click)="switch()"></app-icon-nav>
+  <!-- ici on projete le contenu du composant app-header du composant parent (app-root) -->
   <ng-content select="app-header"></ng-content>
 </header>
 
@@ -10,6 +13,7 @@
 
   <aside>
     <div class="scroller">
+      <!-- ici on projete le contenu du composant app-navbar du composant parent (app-root) -->
       <ng-content select="app-navbar"></ng-content>
     </div>
   </aside>
@@ -17,10 +21,12 @@
   <div class="page">
 
     <div class="contents">
+      <!-- ici on projete le contenu du rooter-outlet ayant la classe CSS "content" du composant parent (app-root) -->
       <ng-content select=".content"></ng-content>
     </div>
 
     <footer>
+      <!-- ici on projete le contenu du composant app-footer du composant parent (app-root) -->
       <ng-content select="app-footer"></ng-content>
     </footer>
 

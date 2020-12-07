@@ -1,0 +1,3 @@
+Le module core doit contenir les composants propres à notre application (hors pages métier), qui ne sont donc pas réutilisables par une autre application si on copie/colle le projet..
+On y mettra donc les barres de navigation, header, footer,...
+Ce module core n'est donc pas ré-utilisable si on copie/colle le code de notre application pour créer une nouvelle application.
