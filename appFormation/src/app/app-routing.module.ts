@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ControlService } from './core/services/control.service';
 import { PageClientsComponent } from './views/clients/pages/page-clients/page-clients.component';
 import { PageHomeComponent } from './views/home/pages/page-home/page-home.component';
 import { PageListOrderComponent } from './views/order/pages/page-list-order/page-list-order.component';
@@ -12,8 +13,8 @@ import { PageNotFoundComponent } from './views/page-not-found/pages/page-not-fou
 const routes: Routes = [
   // Lazy-loading des sous-modules et de leurs routes lorsque le path correspond à l'un de ces sous-modules
   { path:'home', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule) },
-  { path:'orders', loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule) },
-  { path:'clients', loadChildren: () => import('./views/clients/clients.module').then(m => m.ClientsModule) },
+  { path:'orders', canActivate: [ControlService], loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule) },
+  { path:'clients', canActivate: [ControlService], loadChildren: () => import('./views/clients/clients.module').then(m => m.ClientsModule) },
 
   // Route par défaut si aucune route passée en paramètre
   { path:'', redirectTo: '/home', pathMatch: 'full' },
