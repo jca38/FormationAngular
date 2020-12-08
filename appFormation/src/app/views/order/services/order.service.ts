@@ -3,6 +3,8 @@ import { mapToMapExpression } from '@angular/compiler/src/render3/util';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { StateClient } from 'src/app/shared/enums/state-client.enum';
+import { StateOrder } from 'src/app/shared/enums/state-order.enum';
 import { OrderI } from 'src/app/shared/interfaces/order-i';
 import { Order } from 'src/app/shared/models/order.model';
 import { environment } from 'src/environments/environment';
@@ -39,4 +41,26 @@ export class OrderService {
      this.pCollection = col;
    }
 
+   public getById(orderId:number):Observable<Order>{
+    return this.http.get<Order>(`${this.url}orders/${orderId}`).pipe(
+      map(data => {return new Order(data); })
+    )
+   }
+
+   public getById2(orderId:number):Observable<Order>{
+    return this.http.get<Order>(`${this.url}orders?id=${orderId}`).pipe(
+      map(data => {return new Order(data); })
+    )
+   }
+
+   public getByState(state:StateOrder):Observable<Order[]>
+   {
+    return this.http.get<Order[]>(`${this.url}orders?state=${state}`).pipe(
+      map(datas => {          // data est un tableau d'objets JSON anonymes qui représentent des orders
+        return datas.map(obj =>{  // obj est un objet JSON anonyme qui représente un order
+          return new Order(obj);
+        })
+      })
+    );
+   }
 }

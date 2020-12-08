@@ -10,12 +10,16 @@ import { OrderService } from '../../services/order.service';
 export class PageListOrderComponent implements OnInit {
 
   public orders : Order[];
+  public headers:string[];
 
   constructor(
     private orderService :OrderService
   ) { }
 
   ngOnInit(): void {
+    // On définit les headers de notre tableau d'orders dans la vue
+    this.headers = ["Type", "Client", "Nb. jours", "TJM HT", "Total HT", "Total TTC", "Etat"];
+
     this.orderService.collection.subscribe(data => {
       this.orders = data;
       console.log(this.orders);
