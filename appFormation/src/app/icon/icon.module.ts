@@ -4,11 +4,12 @@ import { IconNavComponent } from './icon-nav/icon-nav.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconEditComponent } from './icon-edit/icon-edit.component';
 import { IconDeleteComponent } from './icon-delete/icon-delete.component';
+import { IconLogoutComponent } from './icon-logout/icon-logout.component';
 
 
 
 @NgModule({
-  declarations: [IconNavComponent, IconEditComponent, IconDeleteComponent],
+  declarations: [IconNavComponent, IconEditComponent, IconDeleteComponent, IconLogoutComponent],
   imports: [
     CommonModule,
     FontAwesomeModule
@@ -16,7 +17,8 @@ import { IconDeleteComponent } from './icon-delete/icon-delete.component';
   exports:[
     IconNavComponent,
     IconEditComponent,
-    IconDeleteComponent
+    IconDeleteComponent,
+    IconLogoutComponent
   ]
 })
 export class IconModule { }

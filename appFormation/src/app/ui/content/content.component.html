@@ -1,9 +1,15 @@
 <!-- NOTRE SQUELETTE DE PAGE POUR TOUTES NOS PAGES DE L'APPLICATION (REUTILILSABLE POUR TOUTES NOS APPLICATIONS) -->
 
 <header class="fixed-top">
+
   <app-icon-nav (click)="switch()"></app-icon-nav>
+
   <!-- ici on projete le contenu du composant app-header du composant parent (app-root) -->
+
   <ng-content select="app-header"></ng-content>
+
+  <app-icon-logout></app-icon-logout>
+
 </header>
 
 <main [ngClass]="{'close-aside': !open}">
