@@ -1,15 +1,28 @@
-<!--<p>{{ headers | json }}</p>
-<p>{{ collection | json }}</p> -->
-
 <table class="table">
   <thead>
     <tr>
       <th *ngFor="let h of headers">{{ h }}</th>
     </tr>
   </thead>
-  <tbody>
-    <tr *ngFor="let o of collection">
-      <td *ngFor="let p of collectionProps">{{ this.getProperty(o,p) }}</td>
+  <tbody *ngIf="collectionOrder">
+    <tr *ngFor="let c of collectionOrder">
+      <td>{{ c.typePresta }}</td>
+      <td>{{ c.client }}</td>
+      <td>{{ c.nbJours }}</td>
+      <td>{{ c.tjmHT }}</td>
+      <td>{{ c.totalHT() | currency: 'EUR' }}</td>
+      <td>{{ c.totalTTC() | currency: 'USD' }}</td>
+      <td>{{ c.state }}</td>
+    </tr>
+  </tbody>
+  <tbody *ngIf="collectionClient">
+    <tr *ngFor="let c of collectionClient">
+      <td>{{ c.name }}</td>
+      <td>{{ c.tva }}</td>
+      <td>{{ c.ca }}</td>
+      <td>{{ c.comment }}</td>
+      <td>{{ c.state }}</td>
+      <td>{{ c.total() }}</td>
     </tr>
   </tbody>
 </table>
