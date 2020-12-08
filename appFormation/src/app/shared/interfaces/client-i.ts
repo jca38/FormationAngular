@@ -8,7 +8,5 @@ export interface ClientI {
   ca:number;
   comment:string;
 
-  totalHT():number;
-
-  totalTTC():number;
+  total():number;
 }

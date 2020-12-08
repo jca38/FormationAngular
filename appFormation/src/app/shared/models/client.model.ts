@@ -9,12 +9,8 @@ export class Client implements ClientI {
   ca: number;
   comment: string;
 
-  totalHT(): number {
-    return this.ca;
-    //throw new Error('Method not implemented.');
-  }
-  totalTTC(): number {
-    return this.totalHT() * (1 + this.tva/100);
+  total(): number {
+    return this.ca * (1 + this.tva/100);
     //throw new Error('Method not implemented.');
   }
 
