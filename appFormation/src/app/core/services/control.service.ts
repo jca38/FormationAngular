@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,12 +7,13 @@ import { Observable } from 'rxjs';
 })
 export class ControlService implements CanActivate {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   canActivate():boolean {
-    if (localStorage.userConnected === 'true')
+    if (localStorage.userConnected === 'true') {
       return true;
-    else
-      return false;
+    }
+    this.router.navigate(['/home']);
+    return false;
   }
 }

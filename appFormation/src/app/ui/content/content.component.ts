@@ -20,8 +20,15 @@ export class ContentComponent implements OnInit {
     this.open=!this.open;
   }
 
-  public connexion():void
+  public loginlogout():void
   {
-    localStorage.userConnected = 'true';
+    if (localStorage.userConnected === 'true') {
+      // déconnexion
+      localStorage.removeItem('userConnected');
+    }
+    else {
+      // connexion
+      localStorage.userConnected = 'true';
+    }
   }
 }
