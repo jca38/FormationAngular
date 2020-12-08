@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Client } from 'src/app/shared/models/client.model';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-page-clients',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageClientsComponent implements OnInit {
 
-  constructor() { }
+  public clients : Client[];
+
+  constructor(private clientService:ClientService) {
+    this.clientService.collection.subscribe(data => {
+      this.clients = data;
+      console.log(this.clients);
+    });
+  }
 
   ngOnInit(): void {
   }
