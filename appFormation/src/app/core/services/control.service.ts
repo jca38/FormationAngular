@@ -10,6 +10,9 @@ export class ControlService implements CanActivate {
   constructor() { }
 
   canActivate():boolean {
-    return true;
+    if (localStorage.userConnected === 'true')
+      return true;
+    else
+      return false;
   }
 }

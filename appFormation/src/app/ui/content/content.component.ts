@@ -20,9 +20,8 @@ export class ContentComponent implements OnInit {
     this.open=!this.open;
   }
 
-  public logout():void
+  public connexion():void
   {
-    console.log("click");
+    localStorage.userConnected = 'true';
   }
-
 }
