@@ -1,2 +1,15 @@
-<p>{{ headers | json }}</p>
-<p>{{ collection | json }}</p>
+<!--<p>{{ headers | json }}</p>
+<p>{{ collection | json }}</p> -->
+
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let h of headers">{{ h }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let o of collection">
+      <td *ngFor="let p of collectionProps">{{ this.getProperty(o,p) }}</td>
+    </tr>
+  </tbody>
+</table>

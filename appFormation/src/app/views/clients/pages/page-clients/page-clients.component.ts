@@ -10,13 +10,18 @@ import { ClientService } from '../../services/client.service';
 export class PageClientsComponent implements OnInit {
 
   public clients : Client[];
+  public headers:string[];
 
   constructor(private clientService:ClientService) {
+    // On définit les headers de notre tableau d'orders dans la vue
+    this.headers = ["Nom", "CA", "TVA", "Commentaire", "Etat"];
+
     this.clientService.collection.subscribe(data => {
       this.clients = data;
       console.log(this.clients);
     });
   }
+
 
   ngOnInit(): void {
   }
