@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableLightComponent } from './components/table-light/table-light.component';
+import { TotalPipe } from './pipes/total.pipe';
+import { JoursPipe } from './pipes/jours.pipe';
 
 
 
 @NgModule({
-  declarations: [TableLightComponent],
+  declarations: [TableLightComponent, TotalPipe, JoursPipe],
   imports: [
     CommonModule
   ],
