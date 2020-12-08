@@ -8,7 +8,7 @@
     <tr *ngFor="let c of collectionOrder">
       <td>{{ c.typePresta }}</td>
       <td>{{ c.client }}</td>
-      <td>{{ c.nbJours | jours }}</td>
+      <td>{{ c | jours }}</td>
       <td>{{ c.tjmHT }}</td>
       <td>{{ c | total | currency : "EUR" }}</td>
       <td>{{ c | total : "TTC" | currency : "EUR" }}</td>
