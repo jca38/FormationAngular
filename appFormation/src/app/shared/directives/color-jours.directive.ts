@@ -14,6 +14,10 @@ export class ColorJoursDirective implements OnChanges {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.className = (this.appColorJours <=1 ? "jour" : "jours");
+    this.className = this.formatClass(this.appColorJours);
+  }
+
+  private formatClass(jours:number):string {
+    return (jours ===1 ? "jour" : "jours");
   }
 }
