@@ -1,7 +1,7 @@
 <a *ngIf="route" [routerLink]="route">{{ label }}</a>
 <a *ngIf="href" [href]="href">{{ label }}</a>
 <button *ngIf="action" (click)="doAction()">
-  <!-- Pour pouvoir intégrer un icone sur le bouton injecté par celui qui utilise ce bouton -->
+  <!-- Pour pouvoir intégrer un icone, une image ou autre sur le bouton injecté par celui qui utilise ce bouton -->
   <ng-content></ng-content>
   {{ label }}
 </button>
