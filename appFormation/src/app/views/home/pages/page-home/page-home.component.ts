@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserService } from 'src/app/core/services/user.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-page-home',
@@ -8,13 +10,22 @@ import { Observable } from 'rxjs';
 })
 export class PageHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public userService:UserService
+  ) { }
 
   ngOnInit(): void {
+
+    this.userService.getByUserNamePassword("admin","admin").subscribe((user:User) => { console.log(user); });
+
+    this.userService.collection.subscribe((allusers:User[]) => {
+      console.log(allusers);
+    })
+
     const data = new Observable(obs => {
       obs.next(1);
       obs.next(5);
-      obs.error(new Error("Erreur détectée"));
+      //obs.error(new Error("Erreur détectée"));
       obs.next(8);
       obs.next(9);
       obs.complete();

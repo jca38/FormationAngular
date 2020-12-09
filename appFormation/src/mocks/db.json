@@ -58,5 +58,25 @@
       "comment": "Un comment pour client modis",
       "id": 2
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin",
+      "role": "ADMIN"
+    },
+    {
+      "id": 2,
+      "username": "user1",
+      "password": "user1",
+      "role": "USER"
+    },
+    {
+      "id": 3,
+      "username": "user2",
+      "password": "user2",
+      "role": "USER"
+    }
   ]
 }
