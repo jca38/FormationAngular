@@ -1,8 +1,8 @@
-import { StateUser } from '../enums/state-user.enum';
+import { RoleUser } from '../enums/role-user.enum';
 
 export interface UserI {
   id:number;
   username:string;
   password:string;
-  role:StateUser;
+  role:RoleUser;
 }

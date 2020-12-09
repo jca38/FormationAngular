@@ -1,11 +1,11 @@
-import { StateUser } from '../enums/state-user.enum';
+import { RoleUser } from '../enums/role-user.enum';
 import { UserI } from '../interfaces/user-i';
 
 export class User implements UserI {
   id: number;
   username: string;
   password: string;
-  role: StateUser = StateUser.USER;
+  role: RoleUser = RoleUser.USER;
 
   constructor(obj? : Partial<User>)
   {
