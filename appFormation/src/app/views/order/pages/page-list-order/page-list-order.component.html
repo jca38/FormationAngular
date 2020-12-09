@@ -6,7 +6,7 @@
     <td>{{ c.tjmHT }}</td>
     <td>{{ c | total | currency : "EUR" }}</td>
     <td>{{ c | total : "TTC" | currency : "EUR" }}</td>
-    <td>{{ c.state }}</td>
+    <td [appColorState]="c.state">{{ c.state }}</td>
   </tr>
 </app-table-light>
 
