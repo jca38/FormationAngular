@@ -10,7 +10,6 @@ export class PageAddUserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("TEST");
   }
 
 }

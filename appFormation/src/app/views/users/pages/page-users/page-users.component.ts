@@ -18,8 +18,6 @@ export class PageUsersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log("test");
-
     this.btnAdd = { label : "Ajouter utilisateur", route : "add" };
 
     // On définit les headers de notre tableau d'orders dans la vue
@@ -27,7 +25,6 @@ export class PageUsersComponent implements OnInit {
 
     this.userService.collection.subscribe(data => {
       this.users = data;
-      console.log(this.users);
     });
   }
 
