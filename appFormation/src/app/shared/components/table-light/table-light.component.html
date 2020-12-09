@@ -4,25 +4,7 @@
       <th *ngFor="let h of headers">{{ h }}</th>
     </tr>
   </thead>
-  <tbody *ngIf="collectionOrder">
-    <tr *ngFor="let c of collectionOrder">
-      <td>{{ c.typePresta }}</td>
-      <td>{{ c.client }}</td>
-      <td>{{ c | jours }}</td>
-      <td>{{ c.tjmHT }}</td>
-      <td>{{ c | total | currency : "EUR" }}</td>
-      <td>{{ c | total : "TTC" | currency : "EUR" }}</td>
-      <td>{{ c.state }}</td>
-    </tr>
-  </tbody>
-  <tbody *ngIf="collectionClient">
-    <tr *ngFor="let c of collectionClient">
-      <td>{{ c.name }}</td>
-      <td>{{ c.tva }}</td>
-      <td>{{ c.ca }}</td>
-      <td>{{ c.comment }}</td>
-      <td>{{ c.state }}</td>
-      <td>{{ c.total() }}</td>
-    </tr>
+  <tbody>
+    <ng-content></ng-content>
   </tbody>
 </table>

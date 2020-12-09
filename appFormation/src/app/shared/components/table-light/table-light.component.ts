@@ -9,9 +9,6 @@ import { Order } from '../../models/order.model';
 })
 export class TableLightComponent implements OnInit {
 
-  @Input() public collectionOrder:Order[]
-  @Input() public collectionClient:Client[];
-
   // Liste des entêtes du tableau pour ce type d'entité
   @Input() public headers:string[];
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, getLocaleDayPeriods } from '@angular/common';
 import { TableLightComponent } from './components/table-light/table-light.component';
 import { TotalPipe } from './pipes/total.pipe';
 import { JoursPipe } from './pipes/jours.pipe';
@@ -12,7 +12,9 @@ import { JoursPipe } from './pipes/jours.pipe';
     CommonModule
   ],
   exports: [
-    TableLightComponent
+    TableLightComponent,
+    JoursPipe,
+    TotalPipe
   ]
 })
 export class SharedModule { }
