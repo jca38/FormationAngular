@@ -20,6 +20,6 @@ export class ColorStateDirective implements OnChanges {
 
   // Renvoie le nom d'une classe CSS state-<state> à partir d'un state de type string
   private formatClass(state:string):string {
-   return `state-${state.replace(/\s/g,'').toLocaleLowerCase()}`;
+   return `state-${state.replace(/\s/g,"").toLocaleLowerCase()}`;
   }
 }

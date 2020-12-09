@@ -63,4 +63,18 @@ export class OrderService {
       })
     );
    }
+
+   // Pour faire de l'UPDATE d'un order
+   public update(order: Order): Observable<Order> {
+     return this.http.put<Order>(`${this.url}orders/${order.id}`, order).pipe(
+      map(data => {return new Order(data); })
+     )
+   }
+
+   // ChangeState
+   public changeState(order: Order, state: StateOrder): Observable<Order> {
+    const obj = new Order({...order});
+    obj.state = state;
+    return this.update(obj);
+  }
 }
