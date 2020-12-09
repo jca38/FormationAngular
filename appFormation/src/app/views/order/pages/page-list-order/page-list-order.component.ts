@@ -32,14 +32,18 @@ export class PageListOrderComponent implements OnInit {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Type", "Client", "Nb. jours", "TJM HT", "Total HT", "Total TTC", "Etat"];
 
-    this.btnRoute = { label:"Add an order", route: "add"};
-    this.btnHref = { label:"Go to Google", href: "http://www.google.fr"};
-    this.btnAction = { label:"Open popup", action:true };
-    this.btnFilterCanceled = { label:"Filtrer les canceled", action: true };
+    this.createButtons();
 
     this.orderService.collection.subscribe(data => {
       this.orders = data;
     });
+  }
+
+  public createButtons():void {
+    this.btnRoute = { label:"Add an order", route: "add"};
+    this.btnHref = { label:"Go to Google", href: "http://www.google.fr"};
+    this.btnAction = { label:"Open popup", action:true };
+    this.btnFilterCanceled = { label:"Filtrer les canceled", action: true };
   }
 
   public changeState(order:Order, event):void  {
