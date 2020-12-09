@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ControlService } from './core/services/control.service';
-import { PageClientsComponent } from './views/clients/pages/page-clients/page-clients.component';
-import { PageHomeComponent } from './views/home/pages/page-home/page-home.component';
-import { PageListOrderComponent } from './views/order/pages/page-list-order/page-list-order.component';
 import { PageNotFoundComponent } from './views/page-not-found/pages/page-not-found/page-not-found.component';
 
 // ICI ON DEFINIT LES ROUTES PRINCIPALES DE L'APPLICATION, ET ON CHARGE LES SOUS-ROUTES UNIQUEMENT LORQU'ON EN A BESOIN
@@ -15,6 +12,7 @@ const routes: Routes = [
   { path:'home', loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule) },
   { path:'orders', canActivate: [ControlService], loadChildren: () => import('./views/order/order.module').then(m => m.OrderModule) },
   { path:'clients', canActivate: [ControlService], loadChildren: () => import('./views/clients/clients.module').then(m => m.ClientsModule) },
+  { path:'users', canActivate: [ControlService], loadChildren: () => import('./views/users/users.module').then(m => m.UsersModule) },
 
   // Route par défaut si aucune route passée en paramètre
   { path:'', redirectTo: '/home', pathMatch: 'full' },
