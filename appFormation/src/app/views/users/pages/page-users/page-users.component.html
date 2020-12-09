@@ -1,9 +1,9 @@
-<app-table-light *ngIf="users" [headers]="headers">
+<app-table-stripped *ngIf="users" [headers]="headers">
   <tr *ngFor="let u of users">
     <td>{{ u.id }}</td>
     <td>{{ u.username }}</td>
     <td>{{ u.role }}</td>
   </tr>
-</app-table-light>
+</app-table-stripped>
 
 <app-btn label="Ajout user" route="/users/add"></app-btn>

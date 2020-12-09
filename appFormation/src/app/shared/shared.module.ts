@@ -8,10 +8,11 @@ import { ColorStateDirective } from './directives/color-state.directive';
 import { ColorJoursDirective } from './directives/color-jours.directive';
 import { BtnComponent } from './components/btn/btn.component';
 import { RouterModule } from '@angular/router';
+import { TableStrippedComponent } from './components/table-stripped/table-stripped.component';
 
 
 @NgModule({
-  declarations: [TableLightComponent, TableDarkComponent, TotalPipe, JoursPipe, ColorStateDirective, ColorJoursDirective, BtnComponent],
+  declarations: [TableLightComponent, TableDarkComponent, TotalPipe, JoursPipe, ColorStateDirective, ColorJoursDirective, BtnComponent, TableStrippedComponent],
   imports: [
     CommonModule,
     RouterModule
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     // Composants à exporter
     TableLightComponent,
     TableDarkComponent,
+    TableStrippedComponent,
     BtnComponent,
 
     // Pipes à exporter
