@@ -43,7 +43,7 @@
   ],
   "clients": [
     {
-      "state": "Active",
+      "state": "Desactive",
       "tva": 20,
       "name": "Olivier",
       "ca": 8000,
@@ -51,7 +51,7 @@
       "id": 1
     },
     {
-      "state": "Active",
+      "state": "Desactive",
       "tva": 20,
       "name": "Modis",
       "ca": 120000,
