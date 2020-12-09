@@ -77,4 +77,15 @@ export class OrderService {
     obj.state = state;
     return this.update(obj);
   }
+
+  // Get with filter
+  public getFilterByState(_state : StateOrder):Observable<Order[]>
+  {
+    return this.http.get<Order[]>(`${this.url}orders`)
+    .pipe(
+      map(datas => datas
+          .filter(data => data.state === _state)
+          .map(filtereddata => new Order(filtereddata))
+         ));
+  }
 }

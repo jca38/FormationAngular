@@ -21,6 +21,9 @@ export class PageListOrderComponent implements OnInit {
   public btnHref: BtnI;
   public btnAction: BtnI;
 
+  public btnFilterCanceled: BtnI;
+  public filtreCanceledActif:Boolean=false;
+
   constructor(
     private orderService :OrderService
   ) { }
@@ -32,10 +35,10 @@ export class PageListOrderComponent implements OnInit {
     this.btnRoute = { label:"Add an order", route: "add"};
     this.btnHref = { label:"Go to Google", href: "http://www.google.fr"};
     this.btnAction = { label:"Open popup", action:true };
+    this.btnFilterCanceled = { label:"Filtrer les canceled", action: true };
 
     this.orderService.collection.subscribe(data => {
       this.orders = data;
-      console.log(this.orders);
     });
   }
 
@@ -51,5 +54,24 @@ export class PageListOrderComponent implements OnInit {
 
   public openPopup():void {
     console.log("Test open popup");
+  }
+
+  public filterCanceled():void {
+    if (!this.filtreCanceledActif)
+    {
+      // On filtre QUE sur les orders ayant l'état CANCEL
+      this.orderService.getFilterByState(StateOrder.CANCEL).subscribe((ordersCancelled:Order[]) => {
+        this.orders = ordersCancelled;
+        this.filtreCanceledActif=true;
+      });
+    }
+    else
+    {
+      // On annule le filtre, et on revient sur TOUS les orders
+      this.orderService.collection.subscribe((orders:Order[]) => {
+        this.orders = orders;
+        this.filtreCanceledActif=false;
+      });
+    }
   }
 }
