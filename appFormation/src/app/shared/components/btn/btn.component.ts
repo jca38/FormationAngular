@@ -8,9 +8,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class BtnComponent implements OnInit {
 
   @Input() label:string; // Titre du bouton à créér
-  @Input() route:string; // Route de redirection (facultative)
-  @Input() href:string;  // Pour rediriger à l'exterieur de l'appli (facultatif)
-  @Input() action:boolean;
+  @Input() route:string | undefined; // Route de redirection (facultative)
+  @Input() href:string | undefined;  // Pour rediriger à l'exterieur de l'appli (facultatif)
+  @Input() action:boolean | undefined;
 
   @Output() clicked: EventEmitter<any> = new EventEmitter();
 
