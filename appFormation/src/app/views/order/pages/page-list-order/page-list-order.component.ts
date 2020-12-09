@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StateOrder } from 'src/app/shared/enums/state-order.enum';
+import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { Order } from 'src/app/shared/models/order.model';
 import { OrderService } from '../../services/order.service';
 
@@ -15,6 +16,11 @@ export class PageListOrderComponent implements OnInit {
 
   public states = Object.values(StateOrder);
 
+  // Pour tester le composant générique shared "BtnComponent"
+  public btnRoute: BtnI;
+  public btnHref: BtnI;
+  public btnAction: BtnI;
+
   constructor(
     private orderService :OrderService
   ) { }
@@ -22,6 +28,10 @@ export class PageListOrderComponent implements OnInit {
   ngOnInit(): void {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Type", "Client", "Nb. jours", "TJM HT", "Total HT", "Total TTC", "Etat"];
+
+    this.btnRoute = { label:"Add an order", route: "add"};
+    this.btnHref = { label:"Go to Google", href: "http://www.google.fr"};
+    this.btnAction = { label:"Open popup", action:true };
 
     this.orderService.collection.subscribe(data => {
       this.orders = data;
@@ -37,5 +47,9 @@ export class PageListOrderComponent implements OnInit {
       order.state = data.state;
       console.log("After", order.state);
     });
+  }
+
+  public openPopup():void {
+    console.log("Test open popup");
   }
 }

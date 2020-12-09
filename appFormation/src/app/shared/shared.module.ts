@@ -5,20 +5,24 @@ import { TotalPipe } from './pipes/total.pipe';
 import { JoursPipe } from './pipes/jours.pipe';
 import { ColorStateDirective } from './directives/color-state.directive';
 import { ColorJoursDirective } from './directives/color-jours.directive';
+import { BtnComponent } from './components/btn/btn.component';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  declarations: [TableLightComponent, TotalPipe, JoursPipe, ColorStateDirective, ColorJoursDirective],
+  declarations: [TableLightComponent, TotalPipe, JoursPipe, ColorStateDirective, ColorJoursDirective, BtnComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     TableLightComponent,
     JoursPipe,
     TotalPipe,
     ColorStateDirective,
-    ColorJoursDirective
+    ColorJoursDirective,
+    BtnComponent
   ]
 })
 export class SharedModule { }
