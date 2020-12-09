@@ -9,7 +9,7 @@ export class ColorStateDirective implements OnChanges {
   // Propriété @input du même nom que notre selector de Directive
   @Input() appColorState:string;
 
-  // Décorateur pour maj les classes CSS
+  // Décorateur pour maj les classes CSS du composant qui utilise notre directive
   @HostBinding('class') className:string;
 
   constructor() { }

@@ -4,11 +4,12 @@ import { TableLightComponent } from './components/table-light/table-light.compon
 import { TotalPipe } from './pipes/total.pipe';
 import { JoursPipe } from './pipes/jours.pipe';
 import { ColorStateDirective } from './directives/color-state.directive';
+import { ColorJoursDirective } from './directives/color-jours.directive';
 
 
 
 @NgModule({
-  declarations: [TableLightComponent, TotalPipe, JoursPipe, ColorStateDirective],
+  declarations: [TableLightComponent, TotalPipe, JoursPipe, ColorStateDirective, ColorJoursDirective],
   imports: [
     CommonModule
   ],
@@ -16,7 +17,8 @@ import { ColorStateDirective } from './directives/color-state.directive';
     TableLightComponent,
     JoursPipe,
     TotalPipe,
-    ColorStateDirective
+    ColorStateDirective,
+    ColorJoursDirective
   ]
 })
 export class SharedModule { }
