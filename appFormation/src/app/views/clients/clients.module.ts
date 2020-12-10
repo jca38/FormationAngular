@@ -6,6 +6,7 @@ import { PageClientsComponent } from './pages/page-clients/page-clients.componen
 import { SharedModule } from 'src/app/shared/shared.module';
 import { IconModule } from 'src/app/icon/icon.module';
 import { TemplatesModule } from 'src/app/templates/templates.module';
+import { TextsModule } from 'src/app/texts/texts.module';
 
 
 @NgModule({
