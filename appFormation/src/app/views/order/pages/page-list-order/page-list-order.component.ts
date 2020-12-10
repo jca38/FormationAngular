@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { StateOrder } from 'src/app/shared/enums/state-order.enum';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { Order } from 'src/app/shared/models/order.model';
@@ -11,9 +12,8 @@ import { OrderService } from '../../services/order.service';
 })
 export class PageListOrderComponent implements OnInit {
 
-  public orders : Order[];
+  public orders: Observable<Order[]>;
   public headers:string[];
-
   public states = Object.values(StateOrder);
 
   // Pour tester le composant générique shared "BtnComponent"
@@ -34,9 +34,7 @@ export class PageListOrderComponent implements OnInit {
 
     this.createButtons();
 
-    this.orderService.collection.subscribe(data => {
-      this.orders = data;
-    });
+    this.orders = this.orderService.collection;
   }
 
   public createButtons():void {
@@ -64,18 +62,14 @@ export class PageListOrderComponent implements OnInit {
     if (!this.filtreCanceledActif)
     {
       // On filtre QUE sur les orders ayant l'état CANCEL
-      this.orderService.getFilterByState(StateOrder.CANCEL).subscribe((ordersCancelled:Order[]) => {
-        this.orders = ordersCancelled;
-        this.filtreCanceledActif=true;
-      });
+      this.orders = this.orderService.getFilterByState(StateOrder.CANCEL);
+      this.filtreCanceledActif=true;
     }
     else
     {
       // On annule le filtre, et on revient sur TOUS les orders
-      this.orderService.collection.subscribe((orders:Order[]) => {
-        this.orders = orders;
-        this.filtreCanceledActif=false;
-      });
+      this.orders = this.orderService.collection;
+      this.filtreCanceledActif=false;
     }
   }
 }

@@ -1,5 +1,5 @@
-<app-table-light *ngIf="orders" [headers]="headers">
-  <tr *ngFor="let c of orders">
+<app-table-light *ngIf="orders | async as orderList" [headers]="headers">
+  <tr *ngFor="let c of orderList">
     <td>{{ c.typePresta }}</td>
     <td>{{ c.client }}</td>
     <td [appColorJours]="c.nbJours">{{ c | jours }}</td>
