@@ -10,7 +10,7 @@ export class ControlService implements CanActivate {
   constructor(private router:Router) { }
 
   canActivate():boolean {
-    if (localStorage.userConnected === 'true') {
+    if (localStorage.userAuthentifie) {
       console.log("connecté !");
       return true;
     }

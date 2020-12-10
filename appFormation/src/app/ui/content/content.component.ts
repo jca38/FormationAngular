@@ -24,6 +24,7 @@ export class ContentComponent implements OnInit {
   public logout():void
   {
     // déconnexion
-    localStorage.removeItem('userConnected');
+    localStorage.removeItem('userAuthentifie');
+    this.router.navigate(['/home']);
   }
 }

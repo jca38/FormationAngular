@@ -22,7 +22,7 @@ export class PageUsersComponent implements OnInit {
   public users : Observable<User[]>;
 
   // Utilisateur authentifié
-  public user:User = JSON.parse(localStorage.getItem('user'));
+  public user:User = JSON.parse(localStorage.getItem('userAuthentifie'));
   public isAdmin:Boolean = (this.user.role == "ADMIN");
 
   public headers:string[];

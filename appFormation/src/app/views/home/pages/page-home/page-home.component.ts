@@ -27,7 +27,7 @@ export class PageHomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authentifie = (localStorage.getItem('userConnected') && localStorage.getItem('userConnected')=='true');
+    this.authentifie = (localStorage.getItem('userAuthentifie')!=null);
 
     this.form = this.formBuilder.group({
       username : [this.user.username],
@@ -60,15 +60,13 @@ export class PageHomeComponent implements OnInit {
       if (userAuthentifie && userAuthentifie.id!=null)
       {
         this.authentifie = true;
-        localStorage.setItem('userConnected', 'true');
-        localStorage.setItem('user', JSON.stringify(userAuthentifie));
+        localStorage.setItem('userAuthentifie', JSON.stringify(userAuthentifie));
         this.router.navigate(['/orders']);
       }
       else
       {
         this.authentifie = false;
-        localStorage.removeItem('userConnected');
-        localStorage.removeItem('user');
+        localStorage.removeItem('userAuthentifie');
         this.router.navigate(['/']);
       }
     });
