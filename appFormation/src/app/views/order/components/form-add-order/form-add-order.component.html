@@ -1,0 +1,46 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Chanp Type-->
+    <div class="form-group">
+      <label for="typePresta">Type</label>
+      <input formControlName="typePresta" type="text" class="form-control" id="typePresta"/>
+    </div>
+
+    <!-- Champ client -->
+    <div class="form-group">
+      <label for="client">Client</label>
+      <input formControlName="client" type="text" class="form-control" id="client"/>
+    </div>
+
+    <!-- Champ Nombre de jours -->
+    <div class="form-group">
+      <label for="nbJours">Nombre de jours</label>
+      <input formControlName="nbJours" type="number" class="form-control" id="nbJours"/>
+    </div>
+
+    <!-- Champ TVA -->
+    <div class="form-group">
+      <label for="tva">TVA</label>
+      <input formControlName="tva" type="number" class="form-control" id="tva"/>
+    </div>
+
+    <!-- Champ Etat -->
+    <div class="form-group">
+      <label for="state">Etat</label>
+      <select formControlName="state" class="form-control" id="state">
+        <option *ngFor="let s of states" [ngValue]="s">{{ s }}</option>
+      </select>
+    </div>
+
+    <!-- Champ Commentaire -->
+    <div class="form-group">
+      <label for="comment">Commentaire</label>
+      <textarea formControlName="comment" type="number" class="form-control" id="comment"></textarea>
+    </div>
+
+    <!-- Bouton SUBMIT -->
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+
+  </form>
+</div><!-- container -->
