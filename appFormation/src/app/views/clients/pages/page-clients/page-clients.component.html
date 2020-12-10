@@ -1,5 +1,5 @@
-<app-table-dark *ngIf="clients" [headers]="headers">
-  <tr *ngFor="let c of clients">
+<app-table-dark *ngIf="clients | async as clientsList" [headers]="headers">
+  <tr *ngFor="let c of clientsList">
     <td>{{ c.name }}</td>
     <td>{{ c.tva }}</td>
     <td>{{ c.ca }}</td>

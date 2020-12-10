@@ -1,5 +1,6 @@
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { StateClient } from 'src/app/shared/enums/state-client.enum';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { Client } from 'src/app/shared/models/client.model';
@@ -12,7 +13,7 @@ import { ClientService } from '../../services/client.service';
 })
 export class PageClientsComponent implements OnInit {
 
-  public clients : Client[];
+  public clients : Observable<Client[]>;
   public headers:string[];
 
   public states = Object.values(StateClient);
@@ -26,14 +27,10 @@ export class PageClientsComponent implements OnInit {
 
     this.btnFilterCA = { label:"", action: true };
 
-    this.clientService.collection.subscribe(data => {
-      this.clients = data;
-      console.log(this.clients);
-    });
+    this.clients = this.clientService.collection;
   }
 
   ngOnInit(): void {
-
   }
 
   public changeState(client:Client, event):void  {
@@ -50,20 +47,16 @@ export class PageClientsComponent implements OnInit {
     if (!this.filtreClientsActif)
     {
       // On filtre QUE sur les client ayant un CA<100.000€
-      this.clientService.getFilterByCALessThan(100000).subscribe((clientsFiltered:Client[]) => {
-        this.clients = clientsFiltered;
-        this.filtreClientsActif=true;
-        this.btnFilterCA.label="Réinitialiser";
-      });
+      this.clients = this.clientService.getFilterByCALessThan(100000);
+      this.filtreClientsActif=true;
+      this.btnFilterCA.label="Réinitialiser";
     }
     else
     {
       // On annule le filtre, et on revient sur TOUS les clients
-      this.clientService.collection.subscribe((clients:Client[]) => {
-        this.clients = clients;
-        this.filtreClientsActif=false;
-        this.btnFilterCA.label="";
-      });
+      this.clients = this.clientService.collection;
+      this.filtreClientsActif=false;
+      this.btnFilterCA.label="";
     }
   }
 }

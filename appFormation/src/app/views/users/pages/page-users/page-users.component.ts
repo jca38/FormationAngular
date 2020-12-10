@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { UserService } from 'src/app/core/services/user.service';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { User } from 'src/app/shared/models/user.model';
@@ -10,7 +11,8 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class PageUsersComponent implements OnInit {
 
-  public users : User[];
+  public users : Observable<User[]>;
+
   public headers:string[];
   public btnAdd: BtnI;
 
@@ -23,9 +25,7 @@ export class PageUsersComponent implements OnInit {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Id", "UserName", "Rôle"];
 
-    this.userService.collection.subscribe(data => {
-      this.users = data;
-    });
+    this.users = this.userService.collection;
   }
 
 }
