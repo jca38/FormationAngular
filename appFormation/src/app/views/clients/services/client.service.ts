@@ -51,4 +51,15 @@ export class ClientService {
    obj.state = state;
    return this.update(obj);
  }
+
+ // Get with filter
+ public getFilterByCALessThan(_ca : number):Observable<Client[]>
+ {
+   return this.http.get<Client[]>(`${this.url}clients`)
+   .pipe(
+     map(datas => datas
+         .filter(data => data.ca < _ca)
+         .map(filtereddata => new Client(filtereddata))
+        ));
+ }
 }

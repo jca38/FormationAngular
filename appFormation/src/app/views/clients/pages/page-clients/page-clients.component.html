@@ -12,3 +12,7 @@
     <td>{{ c.total() }}</td>
   </tr>
 </app-table-dark>
+
+<app-btn [label]="btnFilterCA.label" [action]="btnFilterCA.action" (clicked)="filterCALessThan100000()">
+  <app-icon-filter *ngIf="!filtreClientsActif"></app-icon-filter>
+</app-btn>
