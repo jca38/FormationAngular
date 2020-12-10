@@ -1,4 +1,9 @@
 <!-- balise DIV pour maj nos classes CSS selon que le booléen page est positionné ou non -->
-<div [ngClass]="{'pages' : page}">
+<div [ngClass]="{
+  'pages' : page,
+  'page-client' : pageClient
+  }">
+
   <ng-content></ng-content>
+
 </div>

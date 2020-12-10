@@ -10,9 +10,19 @@ app-global-text {
 h1, h2, h3, p, span, i, li {
   color: $light-color;
 }
+
 .pages {
   h1, h2, h3, p, span, i, li {
     color: $dark-color;
+  }
+}
+
+.page-client {
+  h1 {
+    font-weight: bold;
+  }
+  h2 {
+    font-style:italic;
   }
 }
 
