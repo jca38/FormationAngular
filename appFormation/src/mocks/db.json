@@ -139,6 +139,14 @@
       "ca": 15,
       "comment": "essai nouveau client actif",
       "id": 8
+    },
+    {
+      "state": "Active",
+      "tva": 20,
+      "name": null,
+      "ca": null,
+      "comment": null,
+      "id": 9
     }
   ],
   "users": [
