@@ -8,7 +8,12 @@
 
   <ng-content select="app-header"></ng-content>
 
-  <app-icon-logout *ngIf="this.userService.getUser()" (click)="logout()"></app-icon-logout>
+  <div *ngIf="this.userService.getUser()">
+    Bienvenue {{ this.userService.getUser().username }}
+    <app-icon-logout (click)="logout()"></app-icon-logout>
+  </div>
+
+
 
 </header>
 

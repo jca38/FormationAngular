@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/core/services/user.service';
@@ -12,10 +12,10 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class PageHomeComponent implements OnInit {
 
- // Le formulaire
+ // Pour le formulaire d'authentification
  public form:FormGroup;
-
- @Input() public user:User = new User();
+ public username:string;
+ public password:string;
 
   constructor(
     public userService:UserService,
@@ -25,16 +25,17 @@ export class PageHomeComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // Initialisation du formulaire d'authentification
     this.form = this.formBuilder.group({
-      username : [this.user.username],
-      password : [this.user.password]
+      username : [this.username, Validators.required],
+      password : [this.password, Validators.required]
     });
 
-    //this.userService.getByUserNamePassword("admin","admin").subscribe((user:User) => { console.log(user); });
-
+    // Pour tester la récupération de tous les utilisateurs
     this.userService.collection.subscribe((allusers:User[]) => {
-    })
+    });
 
+    // Pour tester les OBSERVABLES
     const data = new Observable(obs => {
       obs.next(1);
       obs.next(5);
@@ -49,6 +50,7 @@ export class PageHomeComponent implements OnInit {
       error : err => console.log(err),
       complete : () => console.log("finish")
     });
+
   }
 
   public onSubmit():void {
