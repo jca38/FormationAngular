@@ -36,7 +36,7 @@ export class PageClientsComponent implements OnInit {
 
   constructor(private clientService:ClientService) {
     // On définit les headers de notre tableau d'orders dans la vue
-    this.headers = ["Nom", "CA", "TVA", "Commentaire", "Etat"];
+    this.headers = ["Nom", "CA", "TVA", "Commentaire", "Etat", "Total TTC"];
 
     this.title="Clients";
     this.subtitle="Liste des clients";

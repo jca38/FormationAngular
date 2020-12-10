@@ -25,11 +25,5 @@ export class ContentComponent implements OnInit {
   {
     // déconnexion
     localStorage.removeItem('userConnected');
-    this.redirectTo("//");
   }
-
-  redirectTo(uri:string){
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri]));
- }
 }

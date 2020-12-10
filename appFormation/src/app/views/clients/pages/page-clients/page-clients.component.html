@@ -11,7 +11,7 @@
           <option *ngFor="let state of states" [value]="state" [selected]="state === c.state"> {{ state }} </option>
         </select>
       </td>
-      <td>{{ c.total() }}</td>
+      <td>{{ c.total() | currency : "EUR" }}</td>
     </tr>
   </app-table-dark>
 
