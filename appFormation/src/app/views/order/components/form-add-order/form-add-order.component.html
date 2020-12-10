@@ -12,6 +12,21 @@
       <label for="client">Client</label>
       <input formControlName="client" type="text" class="form-control" id="client"/>
     </div>
+    <!--
+      touched signifie qu'on a modifié au moins une fois le champ,
+      donc pas quand on arrive sur la page
+    -->
+    <!--
+    <div *ngIf="form.get('client').invalid && form.get('client').touched" class="alert alert-danger">
+      Le client est invalide
+    </div>
+    -->
+    <div *ngIf="form.get('client').errors?.required && form.get('client').touched" class="alert alert-danger">
+      Le client est obligatoire
+    </div>
+    <div *ngIf="form.get('client').errors?.minlength && form.get('client').touched" class="alert alert-danger">
+      Le client doit faire minimum 5 caractères
+    </div>
 
     <!-- Champ Nombre de jours -->
     <div class="form-group">
@@ -29,6 +44,13 @@
     <div class="form-group">
       <label for="tva">TVA</label>
       <input formControlName="tva" type="number" class="form-control" id="tva"/>
+    </div>
+    <!--
+      touched signifie qu'on a modifié au moins une fois le champ,
+      donc pas quand on arrive sur la page
+    -->
+    <div *ngIf="form.get('tva').invalid && form.get('tva').touched" class="alert alert-danger">
+      TVA invalide
     </div>
 
     <!-- Champ Etat -->

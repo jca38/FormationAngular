@@ -6,11 +6,33 @@
       <label for="name">Name</label>
       <input formControlName="name" type="text" class="form-control" id="name"/>
     </div>
+    <!--
+      touched signifie qu'on a modifié au moins une fois le champ,
+      donc pas quand on arrive sur la page
+    -->
+    <!--
+    <div *ngIf="form.get('name').invalid && form.get('name').touched" class="alert alert-danger">
+      Le nom du client est invalide
+    </div>
+    -->
+    <div *ngIf="form.get('name').errors?.required && form.get('name').touched" class="alert alert-danger">
+      Le nom du client est obligatoire
+    </div>
+    <div *ngIf="form.get('name').errors?.minlength && form.get('name').touched" class="alert alert-danger">
+      Le nom du client doit faire minimum 5 caractères
+    </div>
 
     <!-- Champ TVA -->
     <div class="form-group">
       <label for="tva">TVA</label>
       <input formControlName="tva" type="number" class="form-control" id="tva"/>
+    </div>
+    <!--
+      touched signifie qu'on a modifié au moins une fois le champ,
+      donc pas quand on arrive sur la page
+    -->
+    <div *ngIf="form.get('tva').invalid && form.get('tva').touched" class="alert alert-danger">
+      TVA invalide
     </div>
 
     <!-- Champ Etat -->

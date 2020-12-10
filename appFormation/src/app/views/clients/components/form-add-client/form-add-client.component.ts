@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StateClient } from 'src/app/shared/enums/state-client.enum';
 import { Client } from 'src/app/shared/models/client.model';
 
@@ -28,8 +28,8 @@ export class FormAddClientComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       state : [this.client.state],
-      tva : [this.client.tva],
-      name : [this.client.name],
+      tva : [this.client.tva, Validators.required],
+      name : [this.client.name, Validators.compose([Validators.required, Validators.minLength(5)])],
       ca : [this.client.ca],
       comment : [this.client.comment]
     });
