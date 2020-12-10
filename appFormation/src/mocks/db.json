@@ -123,6 +123,22 @@
       "ca": 75000,
       "comment": "new!!",
       "id": 6
+    },
+    {
+      "state": "Active",
+      "tva": 15,
+      "name": "toto",
+      "ca": 150,
+      "comment": "essai nouveau client",
+      "id": 7
+    },
+    {
+      "state": "Active",
+      "tva": 150,
+      "name": "titi",
+      "ca": 15,
+      "comment": "essai nouveau client actif",
+      "id": 8
     }
   ],
   "users": [

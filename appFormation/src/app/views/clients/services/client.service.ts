@@ -38,6 +38,13 @@ export class ClientService {
      this.pCollection = col;
    }
 
+   // Pour faire de l'ADD d'un client
+   public add(client: Client): Observable<Client> {
+    return this.http.post<Client>(`${this.url}clients`, client).pipe(
+     map(data => {return new Client(data); })
+    )
+  }
+
    // Pour faire de l'UPDATE d'un client
    public update(client: Client): Observable<Client> {
     return this.http.put<Client>(`${this.url}clients/${client.id}`, client).pipe(

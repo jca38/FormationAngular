@@ -24,6 +24,8 @@ export class PageClientsComponent implements OnInit {
   // Headers du tableau des clients
   public headers:string[];
 
+  public btnAdd:BtnI;
+
   // Les différents états possibles pour un client
   public states = Object.values(StateClient);
 
@@ -38,6 +40,8 @@ export class PageClientsComponent implements OnInit {
 
     this.title="Clients";
     this.subtitle="Liste des clients";
+
+    this.btnAdd = { label : "Ajout client" , "route" : "add" };
 
     this.btnFilterCA = { label:"", action: true };
 
