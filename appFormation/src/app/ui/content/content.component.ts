@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-content',
@@ -10,7 +11,8 @@ export class ContentComponent implements OnInit {
 
   public open:boolean;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+              public userService:UserService) { }
 
   ngOnInit(): void {
     this.open=false;
@@ -24,7 +26,7 @@ export class ContentComponent implements OnInit {
   public logout():void
   {
     // déconnexion
-    localStorage.removeItem('userAuthentifie');
+    this.userService.setUser(null);
     this.router.navigate(['/home']);
   }
 }

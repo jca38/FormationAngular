@@ -1,10 +1,10 @@
 <div class="container">
 
-  <div *ngIf="this.authentifie">
+  <div *ngIf="this.userService.getUser()">
     Vous êtes connecté !
   </div>
 
-  <app-titre-a title="Formulaire d'authentification"  subtitle="Saisir vos credentials" *ngIf="!this.authentifie">
+  <app-titre-a title="Formulaire d'authentification"  subtitle="Saisir vos credentials" *ngIf="!this.userService.getUser()">
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" >
 

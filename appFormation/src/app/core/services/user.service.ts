@@ -10,12 +10,27 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
+  // Utilisateur authentifié
+  private user:User = null;
+
+  // Pour savoir si l'utilisateur authentifié est ADMIN ou non
+  private isAdmin:Boolean = false;
+
+  // Pour récupérer la liste de tous les utilisateurs
   private pCollection:Observable<User[]>;
 
   // On récupère variable du fichier environnement
   private url = environment.urlApi;
 
   constructor(private http:HttpClient) {
+
+    // Le service a pu perdre ses data comme "this.user" si l'utilisateur a fait ctrl+F5 et donc rechargé le composant donc réinitialisé le service...
+    // Dans ce cas comme on a pris soin de stocker le user authentifié dans le localStorage, on peut le restaurer ici dans le constructeur du service
+    if (!this.user && localStorage.getItem("user")) {
+      this.user = JSON.parse(localStorage.getItem("user"));
+      this.isAdmin = (this.user.role == "ADMIN");
+    }
+
     // fait appel au setter set collection..
     this.collection = this.http.get<User[]>(`${this.url}users`)
     .pipe(
@@ -41,5 +56,28 @@ export class UserService {
     return this.http.get<User>(`${this.url}users?username=${_username}&password=${_password}`).pipe(
       map(datas => {return new User(datas[0]); })
     )
+  }
+
+  isAdministrateur():Boolean {
+    return this.isAdmin;
+  }
+
+  getUser():User  {
+    return this.user;
+  }
+
+  setUser(_user:User)  {
+    if (_user==null)
+    {
+      this.user=null;
+      this.isAdmin=false;
+      localStorage.removeItem("user");
+    }
+    else
+    {
+      this.user = _user;
+      this.isAdmin = (this.user.role == "ADMIN");
+      localStorage.setItem("user", JSON.stringify(_user));
+    }
   }
 }

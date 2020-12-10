@@ -17,8 +17,6 @@ export class PageHomeComponent implements OnInit {
 
  @Input() public user:User = new User();
 
- public authentifie:Boolean = false;
-
   constructor(
     public userService:UserService,
     private formBuilder:FormBuilder,
@@ -26,8 +24,6 @@ export class PageHomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
-    this.authentifie = (localStorage.getItem('userAuthentifie')!=null);
 
     this.form = this.formBuilder.group({
       username : [this.user.username],
@@ -59,14 +55,12 @@ export class PageHomeComponent implements OnInit {
     this.userService.getByUserNamePassword(this.form.value.username, this.form.value.password).subscribe((userAuthentifie:User) => {
       if (userAuthentifie && userAuthentifie.id!=null)
       {
-        this.authentifie = true;
-        localStorage.setItem('userAuthentifie', JSON.stringify(userAuthentifie));
+        this.userService.setUser(userAuthentifie);
         this.router.navigate(['/orders']);
       }
       else
       {
-        this.authentifie = false;
-        localStorage.removeItem('userAuthentifie');
+        this.userService.setUser(null);
         this.router.navigate(['/']);
       }
     });
