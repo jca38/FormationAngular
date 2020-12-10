@@ -4,6 +4,7 @@ import { StateOrder } from 'src/app/shared/enums/state-order.enum';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { Order } from 'src/app/shared/models/order.model';
 import { OrderService } from '../../services/order.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-page-list-order',
@@ -62,7 +63,11 @@ export class PageListOrderComponent implements OnInit {
     if (!this.filtreCanceledActif)
     {
       // On filtre QUE sur les orders ayant l'état CANCEL
-      this.orders = this.orderService.getFilterByState(StateOrder.CANCEL);
+      this.orders = this.orderService.collection.pipe(
+        map(datas => datas.filter(data => data.state === StateOrder.CANCEL).map(filterData => new Order(filterData)))
+      );
+      //this.orders = this.orderService.getFilterByState(StateOrder.CANCEL);
+
       this.filtreCanceledActif=true;
     }
     else
