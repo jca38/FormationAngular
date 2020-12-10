@@ -4,6 +4,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { User } from 'src/app/shared/models/user.model';
 import { map } from 'rxjs/operators';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-page-users',
@@ -17,12 +18,15 @@ export class PageUsersComponent implements OnInit {
   // Sous-titre de la page
   public subtitle:string;
 
+  // Pour récupérer la liste de tous les utilisateurs
   public users : Observable<User[]>;
+
+  // Utilisateur authentifié
+  public user:User = JSON.parse(localStorage.getItem('user'));
+  public isAdmin:Boolean = (this.user.role == "ADMIN");
 
   public headers:string[];
   public btnAdd: BtnI;
-
-  public isAdmin:Boolean = false;
 
   constructor(private userService:UserService) { }
 
@@ -36,19 +40,14 @@ export class PageUsersComponent implements OnInit {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Id", "UserName", "Rôle"];
 
-    const roleUser:string = sessionStorage.getItem("roleUser");
-    const idUser:string = sessionStorage.getItem("idUser");
-
-    this.isAdmin = (roleUser!=null && roleUser === "ADMIN");
-
     // Si USER on filtre pour n'afficher que son USER
-    if (roleUser!=null && roleUser === "USER")
+    if (this.user.role === "USER")
     {
       this.users = this.userService.collection.pipe(
-        map((datas:User[]) => datas.filter((data:User) => data.id == +idUser))
+        map((datas:User[]) => datas.filter((data:User) => data.id == this.user.id))
       );
     }
-    else
+    else if (this.user.role === "ADMIN")
     // SI ADMIN ou NON AUTHENTIFIE, on affiche TOUS LES USERS
     {
       this.users = this.userService.collection;

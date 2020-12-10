@@ -61,16 +61,14 @@ export class PageHomeComponent implements OnInit {
       {
         this.authentifie = true;
         localStorage.setItem('userConnected', 'true');
-        sessionStorage.setItem("idUser", userAuthentifie.id.toString());
-        sessionStorage.setItem("roleUser", userAuthentifie.role);
+        localStorage.setItem('user', JSON.stringify(userAuthentifie));
         this.router.navigate(['/orders']);
       }
       else
       {
         this.authentifie = false;
         localStorage.removeItem('userConnected');
-        sessionStorage.removeItem("idUser");
-        sessionStorage.removeItem("roleUser");
+        localStorage.removeItem('user');
         this.router.navigate(['/']);
       }
     });
