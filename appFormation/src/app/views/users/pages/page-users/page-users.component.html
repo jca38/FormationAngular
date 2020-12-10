@@ -1,7 +1,7 @@
 <app-titre-b [title]="title" [subtitle]="subtitle">
 
   <app-table-stripped *ngIf="users | async as usersList" [headers]="headers">
-    <tr *ngFor="let u of usersList">
+    <tr *ngFor="let u of usersList" [ngClass]="{'admin' : isAdmin }">
       <td>{{ u.id }}</td>
       <td>{{ u.username }}</td>
       <td>{{ u.role }}</td>

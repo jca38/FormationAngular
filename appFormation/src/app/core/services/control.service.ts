@@ -11,6 +11,7 @@ export class ControlService implements CanActivate {
 
   canActivate():boolean {
     if (localStorage.userConnected === 'true') {
+      console.log("connecté !");
       return true;
     }
     this.router.navigate(['/home']);

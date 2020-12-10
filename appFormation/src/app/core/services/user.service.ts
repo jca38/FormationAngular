@@ -39,7 +39,7 @@ export class UserService {
 
   public getByUserNamePassword(_username:string, _password:string):Observable<User>{
     return this.http.get<User>(`${this.url}users?username=${_username}&password=${_password}`).pipe(
-      map(data => {return new User(data); })
+      map(datas => {return new User(datas[0]); })
     )
   }
 }

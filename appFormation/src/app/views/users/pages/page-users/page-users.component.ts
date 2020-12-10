@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { UserService } from 'src/app/core/services/user.service';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { User } from 'src/app/shared/models/user.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-page-users',
@@ -21,6 +22,8 @@ export class PageUsersComponent implements OnInit {
   public headers:string[];
   public btnAdd: BtnI;
 
+  public isAdmin:Boolean = false;
+
   constructor(private userService:UserService) { }
 
   ngOnInit(): void {
@@ -33,7 +36,23 @@ export class PageUsersComponent implements OnInit {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Id", "UserName", "Rôle"];
 
-    this.users = this.userService.collection;
+    const roleUser:string = sessionStorage.getItem("roleUser");
+    const idUser:string = sessionStorage.getItem("idUser");
+
+    this.isAdmin = (roleUser!=null && roleUser === "ADMIN");
+
+    // Si USER on filtre pour n'afficher que son USER
+    if (roleUser!=null && roleUser === "USER")
+    {
+      this.users = this.userService.collection.pipe(
+        map((datas:User[]) => datas.filter((data:User) => data.id == +idUser))
+      );
+    }
+    else
+    // SI ADMIN ou NON AUTHENTIFIE, on affiche TOUS LES USERS
+    {
+      this.users = this.userService.collection;
+    }
   }
 
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/shared/models/user.model';
@@ -10,16 +12,31 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class PageHomeComponent implements OnInit {
 
+ // Le formulaire
+ public form:FormGroup;
+
+ @Input() public user:User = new User();
+
+ public authentifie:Boolean = false;
+
   constructor(
-    public userService:UserService
+    public userService:UserService,
+    private formBuilder:FormBuilder,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
 
-    this.userService.getByUserNamePassword("admin","admin").subscribe((user:User) => { console.log(user); });
+    this.authentifie = (localStorage.getItem('userConnected') && localStorage.getItem('userConnected')=='true');
+
+    this.form = this.formBuilder.group({
+      username : [this.user.username],
+      password : [this.user.password]
+    });
+
+    //this.userService.getByUserNamePassword("admin","admin").subscribe((user:User) => { console.log(user); });
 
     this.userService.collection.subscribe((allusers:User[]) => {
-      console.log(allusers);
     })
 
     const data = new Observable(obs => {
@@ -35,6 +52,27 @@ export class PageHomeComponent implements OnInit {
       next: value => console.log(value),
       error : err => console.log(err),
       complete : () => console.log("finish")
+    });
+  }
+
+  public onSubmit():void {
+    this.userService.getByUserNamePassword(this.form.value.username, this.form.value.password).subscribe((userAuthentifie:User) => {
+      if (userAuthentifie && userAuthentifie.id!=null)
+      {
+        this.authentifie = true;
+        localStorage.setItem('userConnected', 'true');
+        sessionStorage.setItem("idUser", userAuthentifie.id.toString());
+        sessionStorage.setItem("roleUser", userAuthentifie.role);
+        this.router.navigate(['/orders']);
+      }
+      else
+      {
+        this.authentifie = false;
+        localStorage.removeItem('userConnected');
+        sessionStorage.removeItem("idUser");
+        sessionStorage.removeItem("roleUser");
+        this.router.navigate(['/']);
+      }
     });
   }
 }

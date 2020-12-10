@@ -1,1 +1,31 @@
-<p>page-home works!</p>
+<div class="container">
+
+  <div *ngIf="this.authentifie">
+    Vous êtes connecté !
+  </div>
+
+  <app-titre-a title="Formulaire d'authentification"  subtitle="Saisir vos credentials" *ngIf="!this.authentifie">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+
+      <!-- Chanp Type-->
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input formControlName="username" type="text" class="form-control" id="username"/>
+      </div>
+
+      <!-- Champ client -->
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input formControlName="password" type="password" class="form-control" id="password"/>
+      </div>
+
+      <!-- Bouton SUBMIT -->
+      <button type="submit" class="btn btn-primary">Me connecter</button>
+
+    </form>
+
+  </app-titre-a>
+
+
+</div><!-- container -->

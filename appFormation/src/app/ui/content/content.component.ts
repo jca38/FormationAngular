@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -9,7 +10,7 @@ export class ContentComponent implements OnInit {
 
   public open:boolean;
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.open=false;
@@ -20,15 +21,15 @@ export class ContentComponent implements OnInit {
     this.open=!this.open;
   }
 
-  public loginlogout():void
+  public logout():void
   {
-    if (localStorage.userConnected === 'true') {
-      // déconnexion
-      localStorage.removeItem('userConnected');
-    }
-    else {
-      // connexion
-      localStorage.userConnected = 'true';
-    }
+    // déconnexion
+    localStorage.removeItem('userConnected');
+    this.redirectTo("//");
   }
+
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
+ }
 }
