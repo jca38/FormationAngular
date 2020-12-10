@@ -10,18 +10,24 @@ import { OrderService } from '../../services/order.service';
 })
 export class PageAddOrderComponent implements OnInit {
 
+  // Titre de la page
+  public title:string;
+  // Sous-titre de la page
+  public subtitle:string;
+
   constructor(
     private orderService:OrderService,
     private router:Router
     ) { }
 
   ngOnInit(): void {
+
+    this.title="Orders";
+    this.subtitle="Ajout d'un order";
   }
 
-  addOrder(event:any):void
+  addOrder(order: Order):void
   {
-    console.log(event);
-    let order:Order= new Order(event);
     this.orderService.add(order).subscribe((o:Order) => {
       this.router.navigate(['/orders']);
     });
