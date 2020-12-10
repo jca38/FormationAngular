@@ -30,6 +30,7 @@ export class FormAddOrderComponent implements OnInit {
       typePresta : [this.order.typePresta],
       client : [this.order.client],
       nbJours : [this.order.nbJours],
+      tjmHT : [this.order.tjmHT],
       tva : [this.order.tva],
       state : [this.order.state],
       comment : [this.order.comment]

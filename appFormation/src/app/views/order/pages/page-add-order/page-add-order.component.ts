@@ -29,7 +29,7 @@ export class PageAddOrderComponent implements OnInit {
   addOrder(order: Order):void
   {
     this.orderService.add(order).subscribe((o:Order) => {
-      this.router.navigate(['/orders']);
+      this.router.navigate(['orders']);
     });
   }
 
