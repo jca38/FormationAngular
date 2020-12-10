@@ -11,6 +11,11 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class PageUsersComponent implements OnInit {
 
+  // Titre de la page
+  public title:string;
+  // Sous-titre de la page
+  public subtitle:string;
+
   public users : Observable<User[]>;
 
   public headers:string[];
@@ -19,6 +24,9 @@ export class PageUsersComponent implements OnInit {
   constructor(private userService:UserService) { }
 
   ngOnInit(): void {
+
+    this.title="Users";
+    this.subtitle="Liste des users";
 
     this.btnAdd = { label : "Ajouter utilisateur", route : "add" };
 
