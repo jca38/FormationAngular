@@ -1,18 +1,22 @@
-<app-table-dark *ngIf="clients | async as clientsList" [headers]="headers">
-  <tr *ngFor="let c of clientsList">
-    <td>{{ c.name }}</td>
-    <td>{{ c.tva }}</td>
-    <td>{{ c.ca }}</td>
-    <td>{{ c.comment }}</td>
-    <td>
-      <select (change)="changeState(c, $event)">
-        <option *ngFor="let state of states" [value]="state" [selected]="state === c.state"> {{ state }} </option>
-      </select>
-    </td>
-    <td>{{ c.total() }}</td>
-  </tr>
-</app-table-dark>
+<app-titre-b [title]="title" [subtitle]="subtitle">
 
-<app-btn [label]="btnFilterCA.label" [action]="btnFilterCA.action" (clicked)="filterCALessThan100000()">
-  <app-icon-filter *ngIf="!filtreClientsActif"></app-icon-filter>
-</app-btn>
+  <app-table-dark *ngIf="clients | async as clientsList" [headers]="headers">
+    <tr *ngFor="let c of clientsList">
+      <td>{{ c.name }}</td>
+      <td>{{ c.tva }}</td>
+      <td>{{ c.ca }}</td>
+      <td>{{ c.comment }}</td>
+      <td>
+        <select (change)="changeState(c, $event)">
+          <option *ngFor="let state of states" [value]="state" [selected]="state === c.state"> {{ state }} </option>
+        </select>
+      </td>
+      <td>{{ c.total() }}</td>
+    </tr>
+  </app-table-dark>
+
+  <app-btn [label]="btnFilterCA.label" [action]="btnFilterCA.action" (clicked)="filterCALessThan100000()">
+    <app-icon-filter *ngIf="!filtreClientsActif"></app-icon-filter>
+  </app-btn>
+
+</app-titre-b>

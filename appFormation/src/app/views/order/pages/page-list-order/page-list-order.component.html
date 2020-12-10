@@ -1,24 +1,29 @@
-<app-table-light *ngIf="orders | async as orderList" [headers]="headers">
-  <tr *ngFor="let c of orderList">
-    <td>{{ c.typePresta }}</td>
-    <td>{{ c.client }}</td>
-    <td [appColorJours]="c.nbJours">{{ c | jours }}</td>
-    <td>{{ c.tjmHT }}</td>
-    <td>{{ c | total | currency : "EUR" }}</td>
-    <td>{{ c | total : "TTC" | currency : "EUR" }}</td>
-    <td [appColorState]="c.state">
-      <select (change)="changeState(c, $event)">
-        <option *ngFor="let state of states" [value]="state" [selected]="state === c.state"> {{ state }} </option>
-      </select>
-    </td>
-  </tr>
-</app-table-light>
 
-<app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
-<app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
-<app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopup()"></app-btn>
+<app-titre-a [title]="title" [subtitle]="subtitle">
 
-<app-btn [label]="btnFilterCanceled.label" [action]="btnFilterCanceled.action" (clicked)="filterCanceled()">
-  <app-icon-filter></app-icon-filter>
-</app-btn>
+  <app-table-light *ngIf="orders | async as orderList" [headers]="headers">
+    <tr *ngFor="let c of orderList">
+      <td>{{ c.typePresta }}</td>
+      <td>{{ c.client }}</td>
+      <td [appColorJours]="c.nbJours">{{ c | jours }}</td>
+      <td>{{ c.tjmHT }}</td>
+      <td>{{ c | total | currency : "EUR" }}</td>
+      <td>{{ c | total : "TTC" | currency : "EUR" }}</td>
+      <td [appColorState]="c.state">
+        <select (change)="changeState(c, $event)">
+          <option *ngFor="let state of states" [value]="state" [selected]="state === c.state"> {{ state }} </option>
+        </select>
+      </td>
+    </tr>
+  </app-table-light>
+
+  <app-btn [label]="btnRoute.label" [route]="btnRoute.route"></app-btn>
+  <app-btn [label]="btnHref.label" [href]="btnHref.href"></app-btn>
+  <app-btn [label]="btnAction.label" [action]="btnAction.action" (clicked)="openPopup()"></app-btn>
+
+  <app-btn [label]="btnFilterCanceled.label" [action]="btnFilterCanceled.action" (clicked)="filterCanceled()">
+    <app-icon-filter></app-icon-filter>
+  </app-btn>
+
+</app-titre-a>
 

@@ -13,15 +13,26 @@ import { map } from 'rxjs/operators';
 })
 export class PageListOrderComponent implements OnInit {
 
+  // Titre de la page
+  public title:string;
+  // Sous-titre de la page
+  public subtitle:string;
+
+  // Liste des orders
   public orders: Observable<Order[]>;
+
+  // Headers du tableau des orders
   public headers:string[];
+
+  // Les différents états possibles pour un order
   public states = Object.values(StateOrder);
 
-  // Pour tester le composant générique shared "BtnComponent"
+  // Utilisation du composant bouton générique shared "BtnComponent"
   public btnRoute: BtnI;
   public btnHref: BtnI;
   public btnAction: BtnI;
 
+  // Pour filtrer les orders
   public btnFilterCanceled: BtnI;
   public filtreCanceledActif:Boolean=false;
 
@@ -32,6 +43,9 @@ export class PageListOrderComponent implements OnInit {
   ngOnInit(): void {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Type", "Client", "Nb. jours", "TJM HT", "Total HT", "Total TTC", "Etat"];
+
+    this.title="Orders";
+    this.subtitle="Liste des orders";
 
     this.createButtons();
 

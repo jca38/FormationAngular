@@ -13,17 +13,31 @@ import { ClientService } from '../../services/client.service';
 })
 export class PageClientsComponent implements OnInit {
 
+  // Titre de la page
+  public title:string;
+  // Sous-titre de la page
+  public subtitle:string;
+
+  // Liste des clients
   public clients : Observable<Client[]>;
+
+  // Headers du tableau des clients
   public headers:string[];
 
+  // Les différents états possibles pour un client
   public states = Object.values(StateClient);
 
+   // Utilisation du composant bouton générique shared "BtnComponent"
   public btnFilterCA: BtnI;
+  // Pour filtrer les clients
   public filtreClientsActif:Boolean=false;
 
   constructor(private clientService:ClientService) {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Nom", "CA", "TVA", "Commentaire", "Etat"];
+
+    this.title="Clients";
+    this.subtitle="Liste des clients";
 
     this.btnFilterCA = { label:"", action: true };
 
