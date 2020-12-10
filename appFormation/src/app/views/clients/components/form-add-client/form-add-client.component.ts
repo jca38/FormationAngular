@@ -29,7 +29,7 @@ export class FormAddClientComponent implements OnInit {
     this.form = this.formBuilder.group({
       state : [this.client.state],
       tva : [this.client.tva, Validators.required],
-      name : [this.client.name, Validators.compose([Validators.required, Validators.minLength(5)])],
+      name : [this.client.name, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
       ca : [this.client.ca],
       comment : [this.client.comment]
     });
