@@ -23,7 +23,7 @@ export class PageUsersComponent implements OnInit {
   public headers:string[];
   public btnAdd: BtnI;
 
-  constructor(private userService:UserService) { }
+  constructor(public userService:UserService) { }
 
   ngOnInit(): void {
 
