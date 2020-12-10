@@ -15,3 +15,21 @@ a, button {
     background: darken($color3, 10);
   }
 }
+
+:host-context(app-titre-a) {
+  a, button {
+   background-color: $color1;
+  }
+  &:hover {
+    background-color: darken($color1, 10);
+  }
+}
+
+:host-context(app-titre-b) {
+  a, button {
+   background-color: $color2;
+  }
+  &:hover {
+    background-color: darken($color2, 10);
+  }
+}
