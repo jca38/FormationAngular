@@ -1,6 +1,6 @@
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { StateClient } from 'src/app/shared/enums/state-client.enum';
@@ -15,36 +15,28 @@ import { ClientService } from '../../services/client.service';
 })
 export class PageClientsComponent implements OnInit {
 
-  // Liste des clients
+  // Liste des clients pour le tableau des clients
   public clients : Observable<Client[]>;
 
   // Headers du tableau des clients
-  public headers:string[];
-
-  public btnAdd:BtnI;
+  public headers:string[] = ["Actions", "Nom", "CA", "TVA", "Commentaire", "Etat", "Total TTC"];
 
   // Les différents états possibles pour un client
   public states = Object.values(StateClient);
 
    // Utilisation du composant bouton générique shared "BtnComponent"
-  public btnFilterCA: BtnI;
-  // Pour filtrer les clients
-  public filtreClientsActif:Boolean=false;
+  public btnAdd:BtnI        = { label : "Ajout client" , "route" : "add" };
+  public btnFilterCA: BtnI  = { label:"", action: true };
+  public filtreClientsActif:Boolean=false; // Pour filtrer les clients
 
   constructor(
     private clientService:ClientService,
-    public route:ActivatedRoute) {
-    // On définit les headers de notre tableau d'orders dans la vue
-    this.headers = ["Actions", "Nom", "CA", "TVA", "Commentaire", "Etat", "Total TTC"];
-
-    this.btnAdd = { label : "Ajout client" , "route" : "add" };
-
-    this.btnFilterCA = { label:"", action: true };
-
-    this.clients = this.clientService.collection;
+    public route:ActivatedRoute,
+    public router:Router) {
   }
 
   ngOnInit(): void {
+    this.clients = this.clientService.collection;
   }
 
   public changeState(client:Client, event):void  {
@@ -72,6 +64,14 @@ export class PageClientsComponent implements OnInit {
       this.filtreClientsActif=false;
       this.btnFilterCA.label="";
     }
+  }
+
+  public view(id:number):void {
+    // TODO
+  }
+
+  public edit(id:number):void {
+    this.router.navigate([`clients/edit/${id}`]);
   }
 
   public deleteClient(id:number)

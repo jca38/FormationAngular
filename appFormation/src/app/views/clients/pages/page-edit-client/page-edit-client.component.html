@@ -1,0 +1,3 @@
+<app-titre-b *ngIf="route.data | async as datas" [title]="datas.title" [subtitle]="datas.subtitle">
+  <app-form-edit-client *ngIf="clientEdition" [client]="clientEdition" (clicked)="updateClient($event)"></app-form-edit-client>
+</app-titre-b>

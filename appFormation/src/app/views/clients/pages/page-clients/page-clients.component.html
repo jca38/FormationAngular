@@ -3,10 +3,10 @@
   <app-table-dark *ngIf="clients | async as clientsList" [headers]="headers">
     <tr *ngFor="let c of clientsList">
       <td>
-        <app-btn label="Détails client" route="details">
-          <app-icon-add></app-icon-add>
+        <app-btn label="Détails client" action="true" (clicked)="view(c.id)">
+          <app-icon-view></app-icon-view>
         </app-btn>
-        <app-btn label="Edit client2" action="true" route="edit">
+        <app-btn label="Edit client" action="true" (clicked)="edit(c.id)">
           <app-icon-edit></app-icon-edit>
         </app-btn>
         <app-btn label="Delete client" action="true" (clicked)="deleteClient(c.id)">

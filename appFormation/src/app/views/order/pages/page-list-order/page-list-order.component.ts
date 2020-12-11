@@ -18,39 +18,24 @@ export class PageListOrderComponent implements OnInit {
   public orders: Observable<Order[]>;
 
   // Headers du tableau des orders
-  public headers:string[];
+  public headers:string[] = ["Type", "Client", "Nb. jours", "TJM HT", "Total HT", "Total TTC", "Etat"];
 
   // Les différents états possibles pour un order
   public states = Object.values(StateOrder);
 
   // Utilisation du composant bouton générique shared "BtnComponent"
-  public btnRoute: BtnI;
-  public btnHref: BtnI;
-  public btnAction: BtnI;
-
-  // Pour filtrer les orders
-  public btnFilterCanceled: BtnI;
-  public filtreCanceledActif:Boolean=false;
+  public btnRoute: BtnI           = { label:"Add an order", route: "add"};
+  public btnHref: BtnI            = { label:"Go to Google", href: "http://www.google.fr"};
+  public btnAction: BtnI          = { label:"Open popup", action:true };
+  public btnFilterCanceled: BtnI  = { label:"Filtrer les canceled", action: true };
+  public filtreCanceledActif:Boolean=false; // Pour filter les orders canceled uniquement
 
   constructor(
     private orderService :OrderService,
-    public route:ActivatedRoute
-  ) { }
+    public route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    // On définit les headers de notre tableau d'orders dans la vue
-    this.headers = ["Type", "Client", "Nb. jours", "TJM HT", "Total HT", "Total TTC", "Etat"];
-
-    this.createButtons();
-
     this.orders = this.orderService.collection;
-  }
-
-  public createButtons():void {
-    this.btnRoute = { label:"Add an order", route: "add"};
-    this.btnHref = { label:"Go to Google", href: "http://www.google.fr"};
-    this.btnAction = { label:"Open popup", action:true };
-    this.btnFilterCanceled = { label:"Filtrer les canceled", action: true };
   }
 
   public changeState(order:Order, event):void  {

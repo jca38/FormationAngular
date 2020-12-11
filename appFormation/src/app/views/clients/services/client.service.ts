@@ -38,6 +38,12 @@ export class ClientService {
      this.pCollection = col;
    }
 
+   public getById(clientId:number):Observable<Client>{
+    return this.http.get<Client>(`${this.url}clients/${clientId}`).pipe(
+      map(data => {return new Client(data); })
+    )
+   }
+
    // Pour faire de l'ADD d'un client
    public add(client: Client): Observable<Client> {
     return this.http.post<Client>(`${this.url}clients`, client).pipe(
@@ -53,8 +59,10 @@ export class ClientService {
   }
 
   // Pour faire de le DELETE d'un client
-  public delete(id: number):Observable<any> {
-    return this.http.delete<Client>(`${this.url}clients/${id}`);
+  public delete(id: number):Observable<Client> {
+    return this.http.delete<Client>(`${this.url}clients/${id}`).pipe(
+      map(data => {return new Client(data); })
+     );
   }
 
   // ChangeState

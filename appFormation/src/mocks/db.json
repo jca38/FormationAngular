@@ -93,19 +93,11 @@
   ],
   "clients": [
     {
-      "state": "Desactive",
+      "state": "Active",
       "tva": 20,
-      "name": "Olivier",
-      "ca": 8000,
-      "comment": "Un comment pour client Olivier",
-      "id": 1
-    },
-    {
-      "state": "Desactive",
-      "tva": 20,
-      "name": "Modis",
+      "name": "Modis222",
       "ca": 120000,
-      "comment": "Un comment pour client modis",
+      "comment": "Un comment pour client modis55655",
       "id": 2
     },
     {
