@@ -1,4 +1,4 @@
-<app-titre-b [title]="title" [subtitle]="subtitle">
+<app-titre-b *ngIf="route.data | async as datas"[title]="datas.title" [subtitle]="datas.subtitle">
 
   <app-table-dark *ngIf="clients | async as clientsList" [headers]="headers">
     <tr *ngFor="let c of clientsList">

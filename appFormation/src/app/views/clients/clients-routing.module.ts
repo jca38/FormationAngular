@@ -4,8 +4,8 @@ import { PageAddClientComponent } from './pages/page-add-client/page-add-client.
 import { PageClientsComponent } from './pages/page-clients/page-clients.component';
 
 const routes: Routes = [
-  { path:'', component:PageClientsComponent },
-  { path:'add', component:PageAddClientComponent }
+  { path:'', component:PageClientsComponent , data : { title : 'Clients', subtitle :'Liste des clients'} },
+  { path:'add', component:PageAddClientComponent , data : { title : 'Clients', subtitle :'Ajout client'} },
 ];
 
 @NgModule({

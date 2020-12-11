@@ -1,5 +1,6 @@
 import { HttpClientXsrfModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StateClient } from 'src/app/shared/enums/state-client.enum';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
@@ -12,11 +13,6 @@ import { ClientService } from '../../services/client.service';
   styleUrls: ['./page-clients.component.scss']
 })
 export class PageClientsComponent implements OnInit {
-
-  // Titre de la page
-  public title:string;
-  // Sous-titre de la page
-  public subtitle:string;
 
   // Liste des clients
   public clients : Observable<Client[]>;
@@ -34,12 +30,11 @@ export class PageClientsComponent implements OnInit {
   // Pour filtrer les clients
   public filtreClientsActif:Boolean=false;
 
-  constructor(private clientService:ClientService) {
+  constructor(
+    private clientService:ClientService,
+    public route:ActivatedRoute) {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Nom", "CA", "TVA", "Commentaire", "Etat", "Total TTC"];
-
-    this.title="Clients";
-    this.subtitle="Liste des clients";
 
     this.btnAdd = { label : "Ajout client" , "route" : "add" };
 
