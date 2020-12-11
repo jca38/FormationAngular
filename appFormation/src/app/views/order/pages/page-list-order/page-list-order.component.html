@@ -1,5 +1,5 @@
 
-<app-titre-a [title]="title" [subtitle]="subtitle">
+<app-titre-a *ngIf="route.data | async as datas" [title]="datas.title" [subtitle]="datas.subtitle">
 
     <app-table-light *ngIf="orders | async as orderList" [headers]="headers">
       <tr *ngFor="let c of orderList">

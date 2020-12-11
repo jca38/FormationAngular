@@ -10,15 +10,10 @@ import { OrderService } from '../../services/order.service';
 })
 export class PageAddOrderComponent implements OnInit {
 
-  // Titre de la page
-  public title:string;
-  // Sous-titre de la page
-  public subtitle:string;
-
   constructor(
     private orderService:OrderService,
     private router:Router,
-    private route:ActivatedRoute
+    public route:ActivatedRoute
     ) { }
 
   ngOnInit(): void {
@@ -28,9 +23,6 @@ export class PageAddOrderComponent implements OnInit {
     //     ....
     //   }
     // });
-
-    this.title="Orders";
-    this.subtitle="Ajout d'un order";
   }
 
   addOrder(order: Order):void

@@ -5,6 +5,7 @@ import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { Order } from 'src/app/shared/models/order.model';
 import { OrderService } from '../../services/order.service';
 import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-page-list-order',
@@ -12,11 +13,6 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./page-list-order.component.scss']
 })
 export class PageListOrderComponent implements OnInit {
-
-  // Titre de la page
-  public title:string;
-  // Sous-titre de la page
-  public subtitle:string;
 
   // Liste des orders
   public orders: Observable<Order[]>;
@@ -37,15 +33,13 @@ export class PageListOrderComponent implements OnInit {
   public filtreCanceledActif:Boolean=false;
 
   constructor(
-    private orderService :OrderService
+    private orderService :OrderService,
+    public route:ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     // On définit les headers de notre tableau d'orders dans la vue
     this.headers = ["Type", "Client", "Nb. jours", "TJM HT", "Total HT", "Total TTC", "Etat"];
-
-    this.title="Orders";
-    this.subtitle="Liste des orders";
 
     this.createButtons();
 
