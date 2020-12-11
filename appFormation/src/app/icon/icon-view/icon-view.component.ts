@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faStreetView } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-icon-view',
@@ -8,7 +8,7 @@ import { faStreetView } from '@fortawesome/free-solid-svg-icons';
 })
 export class IconViewComponent implements OnInit {
 
-  public myIcon = faStreetView;
+  public myIcon = faEye;
 
   constructor() { }
 
