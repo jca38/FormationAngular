@@ -54,6 +54,7 @@ export class PageHomeComponent implements OnInit {
   }
 
   public onSubmit():void {
+    // On peut aussi faire user:User = this.form.value;
     this.userService.getByUserNamePassword(this.form.value.username, this.form.value.password).subscribe((userAuthentifie:User) => {
       if (userAuthentifie && userAuthentifie.id!=null)
       {

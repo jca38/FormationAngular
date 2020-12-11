@@ -52,9 +52,17 @@ export class UserService {
     this.pCollection = col;
   }
 
+  // Renvoie un utilisateur à partir d'un username/password
   public getByUserNamePassword(_username:string, _password:string):Observable<User>{
     return this.http.get<User>(`${this.url}users?username=${_username}&password=${_password}`).pipe(
       map(datas => {return new User(datas[0]); })
+    )
+  }
+
+  // Renvoie un utilisateur à partir de son ID
+  public getById(id:number):Observable<User>{
+    return this.http.get<User>(`${this.url}users/${id}`).pipe(
+      map(data => {return new User(data); })
     )
   }
 
