@@ -52,6 +52,11 @@ export class ClientService {
     )
   }
 
+  // Pour faire de le DELETE d'un client
+  public delete(id: number):Observable<any> {
+    return this.http.delete<Client>(`${this.url}clients/${id}`);
+  }
+
   // ChangeState
   public changeState(client: Client, state: StateClient): Observable<Client> {
    const obj = new Client({...client});
