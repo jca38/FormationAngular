@@ -67,7 +67,7 @@ export class PageClientsComponent implements OnInit {
   }
 
   public view(id:number):void {
-    // TODO
+    this.router.navigate([`clients/details/${id}`, { detail:true }]);
   }
 
   public edit(id:number):void {

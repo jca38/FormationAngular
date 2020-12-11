@@ -13,6 +13,9 @@ export class PageAddEditClientComponent implements OnInit {
   // Client à éditer dans le cas d'une édition
   public clientEdition?:Client;
 
+  // Pour savoir si on affiche le détail
+  public detail:Boolean = false;
+
   constructor(
     public route:ActivatedRoute,
     public router:Router,
@@ -25,6 +28,9 @@ export class PageAddEditClientComponent implements OnInit {
       if (params.get('id')) {
         this.clientsService.getById(Number(params.get('id'))).subscribe((_client:Client) => {
           this.clientEdition = _client;
+          if (params.get('detail')) {
+            this.detail = true;
+          }
         });
       }
     });

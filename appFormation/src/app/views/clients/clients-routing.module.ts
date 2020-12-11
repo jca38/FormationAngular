@@ -6,7 +6,8 @@ import { PageClientsComponent } from './pages/page-clients/page-clients.componen
 const routes: Routes = [
   { path:'', component:PageClientsComponent , data : { title : 'Clients', subtitle :'Liste des clients'} },
   { path:'add', component:PageAddEditClientComponent , data : { title : 'Clients', subtitle :'Ajout client'} },
-  { path:'edit/:id', component:PageAddEditClientComponent , data : { title : 'Clients', subtitle :'Modification client'} }
+  { path:'edit/:id', component:PageAddEditClientComponent , data : { title : 'Clients', subtitle :'Modification client'} },
+  { path:'details/:id', component:PageAddEditClientComponent , data : { title : 'Clients', subtitle :'Détail client'} }
 ];
 
 @NgModule({

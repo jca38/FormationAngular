@@ -1,44 +1,34 @@
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <!-- Champ client - mode ADD -->
-    <div *ngIf="!client.id">
-
-      <div class="form-group">
-        <label for="name">Name (obligatoire, entre 5 et 10 caractères)</label>
-        <input formControlName="name" type="text" class="form-control" id="name"/>
-      </div>
-      <!--
-        touched signifie qu'on a modifié au moins une fois le champ,
-        donc pas quand on arrive sur la page
-      -->
-      <!--
-      <div *ngIf="form.get('name').invalid && form.get('name').touched" class="alert alert-danger">
-        Le nom du client est invalide
-      </div>
-      -->
-      <div *ngIf="form.get('name').errors?.required && form.get('name').touched" class="alert alert-danger">
-        Le nom du client est obligatoire
-      </div>
-      <div *ngIf="form.get('name').errors?.minlength && form.get('name').touched" class="alert alert-danger">
-        Le nom du client doit faire minimum 5 caractères
-      </div>
-      <div *ngIf="form.get('name').errors?.maxlength && form.get('name').touched" class="alert alert-danger">
-        Le nom du client doit faire maximum 10 caractères
-      </div>
-
-    </div>
-
-    <!-- Champ client - mode EDITION -->
-    <div class="form-group" *ngIf="client.id">
+    <!-- Champ Client -->
+    <div class="form-group">
       <label for="name">Name (obligatoire, entre 5 et 10 caractères)</label>
-      <input formControlName="name" type="text" class="form-control" id="name" disabled="true" />
+      <input formControlName="name" type="text" class="form-control" id="name" />
+    </div>
+    <!--
+      touched signifie qu'on a modifié au moins une fois le champ,
+      donc pas quand on arrive sur la page
+    -->
+    <!--
+    <div *ngIf="form.get('name').invalid && form.get('name').touched" class="alert alert-danger">
+      Le nom du client est invalide
+    </div>
+    -->
+    <div *ngIf="form.get('name').errors?.required && form.get('name').touched" class="alert alert-danger">
+      Le nom du client est obligatoire
+    </div>
+    <div *ngIf="form.get('name').errors?.minlength && form.get('name').touched" class="alert alert-danger">
+      Le nom du client doit faire minimum 5 caractères
+    </div>
+    <div *ngIf="form.get('name').errors?.maxlength && form.get('name').touched" class="alert alert-danger">
+      Le nom du client doit faire maximum 10 caractères
     </div>
 
     <!-- Champ TVA -->
     <div class="form-group">
       <label for="tva">TVA (obligatoire)</label>
-      <input formControlName="tva" type="number" class="form-control" id="tva"/>
+      <input formControlName="tva" type="number" class="form-control" id="tva" />
     </div>
     <!--
       touched signifie qu'on a modifié au moins une fois le champ,
@@ -69,8 +59,11 @@
     </div>
 
     <!-- Bouton SUBMIT -->
-    <button type="submit" [disabled]="form.invalid" class="btn btn-info">Sauvegarder</button>&nbsp;
-    <button type="button" class="btn btn-secondary" routerLink="/clients">Annuler</button>
+    <button type="submit" *ngIf="!modedetail" [disabled]="form.invalid" class="btn btn-info">Sauvegarder</button>&nbsp;
+
+    <!-- Boutons CANCEL-->
+    <button type="button" *ngIf="!modedetail" class="btn btn-secondary" routerLink="/clients">Annuler</button>
+    <button type="button" *ngIf="modedetail" class="btn btn-secondary" routerLink="/clients">Fermer</button>
 
   </form>
 </div><!-- container -->

@@ -12,7 +12,8 @@ import { Client } from 'src/app/shared/models/client.model';
 export class FormAddEditClientComponent implements OnInit {
 
   // Uniquement utilisé lors du mode Edition d'un client
-  @Input() client = new Client();
+  @Input() client:Client = new Client();
+  @Input() modedetail : boolean = false;
 
   @Output() clicked:EventEmitter<Client> = new EventEmitter();
 
@@ -28,11 +29,11 @@ export class FormAddEditClientComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      state : [this.client.state],
-      tva : [this.client.tva, Validators.required],
-      name : [this.client.name, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
-      ca : [this.client.ca],
-      comment : [this.client.comment]
+      state : [{ value : this.client.state, disabled: this.modedetail }],
+      tva : [{ value : this.client.tva, disabled : this.modedetail}, [Validators.required]],
+      name : [{ value : this.client.name, disabled : this.modedetail || this.client.id}, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
+      ca : [{ value : this.client.ca, disabled : this.modedetail }],
+      comment : [{ value : this.client.comment, disabled: this.modedetail }]
     });
   }
 

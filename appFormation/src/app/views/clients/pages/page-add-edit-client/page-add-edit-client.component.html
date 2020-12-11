@@ -1,4 +1,4 @@
 <app-titre-b *ngIf="route.data | async as datas" [title]="datas.title" [subtitle]="datas.subtitle">
   <app-form-add-edit-client *ngIf="!clientEdition"  (clicked)="addClient($event)"></app-form-add-edit-client>
-  <app-form-add-edit-client *ngIf="clientEdition" [client]="clientEdition" (clicked)="updateClient($event)"></app-form-add-edit-client>
+  <app-form-add-edit-client *ngIf="clientEdition" [client]="clientEdition" [modedetail]="detail" (clicked)="updateClient($event)"></app-form-add-edit-client>
 </app-titre-b>
