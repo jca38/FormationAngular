@@ -2,6 +2,17 @@
 
   <app-table-dark *ngIf="clients | async as clientsList" [headers]="headers">
     <tr *ngFor="let c of clientsList">
+      <td>
+        <app-btn label="Détails client" route="details">
+          <app-icon-add></app-icon-add>
+        </app-btn>
+        <app-btn label="Edit client2" action="true" route="edit">
+          <app-icon-edit></app-icon-edit>
+        </app-btn>
+        <app-btn label="Delete client" action="true" (clicked)="deleteClient(c.id)">
+          <app-icon-delete></app-icon-delete>
+        </app-btn>
+      </td>
       <td>{{ c.name }}</td>
       <td>{{ c.tva }}</td>
       <td>{{ c.ca }}</td>
