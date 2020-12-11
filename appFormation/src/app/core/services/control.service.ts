@@ -12,8 +12,8 @@ export class ControlService implements CanActivate {
               private userService:UserService) { }
 
   canActivate():boolean {
-    if (this.userService.getUser()) {
-      console.log("connecté !");
+    if (this.userService.getUserId()) {
+      // console.log("connecté !");
       return true;
     }
     this.router.navigate(['/home']);

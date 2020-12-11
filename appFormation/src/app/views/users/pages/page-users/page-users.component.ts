@@ -4,6 +4,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { BtnI } from 'src/app/shared/interfaces/btn-i';
 import { User } from 'src/app/shared/models/user.model';
 import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-page-users',
@@ -12,42 +13,39 @@ import { map } from 'rxjs/operators';
 })
 export class PageUsersComponent implements OnInit {
 
-  // Titre de la page
-  public title:string;
-  // Sous-titre de la page
-  public subtitle:string;
-
   // Pour récupérer la liste de tous les utilisateurs
   public users : Observable<User[]>;
 
-  public headers:string[];
-  public btnAdd: BtnI;
+  // On définit les headers de notre tableau d'orders dans la vue
+  public headers:string[] = ["Id", "UserName", "Rôle"];
+  public btnAdd: BtnI = { label : "Ajouter utilisateur", route : "add" };
 
-  constructor(public userService:UserService) { }
+  // L'utilisateur connecté et son rôle
+  public userConnecte:User;
+
+  constructor(
+    public userService:UserService,
+    public route:ActivatedRoute) { }
 
   ngOnInit(): void {
 
-    this.title="Users";
-    this.subtitle="Liste des users";
+    // Pour récupérer le user connecté
+    this.userService.getById(this.userService.getUserId()).subscribe(data =>{
+      // On stocke le user connecté et son rôle
+      this.userConnecte = data;
 
-    this.btnAdd = { label : "Ajouter utilisateur", route : "add" };
-
-    // On définit les headers de notre tableau d'orders dans la vue
-    this.headers = ["Id", "UserName", "Rôle"];
-
-    // Si l'utilisateur authentifié est ADMIN, on affiche tous les utilisateurs
-    if (this.userService.isAdministrateur())
-    {
-      console.log("Admin");
-      this.users = this.userService.collection;
-    }
-    else
-    {
-      console.log("User");
-      // Si l'utilisateur authentifié n'est pas ADMIN, on n'affiche que lui-même
-      this.users = this.userService.collection.pipe(
-        map((datas:User[]) => datas.filter((data:User) => data.id == this.userService.getUser().id))
-      );
-    }
+      // Si l'utilisateur authentifié est ADMIN, on affiche tous les utilisateurs
+      if (this.userConnecte.role === "ADMIN")
+      {
+        this.users = this.userService.collection;
+      }
+      else
+      {
+        // Si l'utilisateur authentifié n'est pas ADMIN, on n'affiche que lui-même
+        this.users = this.userService.collection.pipe(
+          map((datas:User[]) => datas.filter((data:User) => data.id == this.userConnecte.id))
+        );
+      }
+    });
   }
 }

@@ -58,12 +58,12 @@ export class PageHomeComponent implements OnInit {
     this.userService.getByUserNamePassword(this.form.value.username, this.form.value.password).subscribe((userAuthentifie:User) => {
       if (userAuthentifie && userAuthentifie.id!=null)
       {
-        this.userService.setUser(userAuthentifie);
+        this.userService.setUserId(userAuthentifie.id);
         this.router.navigate(['/orders']);
       }
       else
       {
-        this.userService.setUser(null);
+        this.userService.setUserId(null);
         this.router.navigate(['/']);
       }
     });

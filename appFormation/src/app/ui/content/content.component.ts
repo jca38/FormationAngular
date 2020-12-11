@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-content',
@@ -9,10 +10,12 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class ContentComponent implements OnInit {
 
+  // Pour gérer l'ouverture ou la fermeture du panel gauche
   public open:boolean;
 
   constructor(private router:Router,
-              public userService:UserService) { }
+              public userService:UserService) {
+  }
 
   ngOnInit(): void {
     this.open=false;
@@ -26,7 +29,7 @@ export class ContentComponent implements OnInit {
   public logout():void
   {
     // déconnexion
-    this.userService.setUser(null);
+    this.userService.setUserId(null);
     this.router.navigate(['/home']);
   }
 }

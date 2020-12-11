@@ -1,13 +1,13 @@
-<app-titre-b [title]="title" [subtitle]="subtitle">
+<app-titre-b *ngIf="route.data | async as datas" [title]="datas.title" [subtitle]="datas.subtitle">
 
   <app-table-stripped *ngIf="users | async as usersList" [headers]="headers">
-    <tr *ngFor="let u of usersList" [ngClass]="{'admin' : this.userService.isAdministrateur() }">
-      <td>{{ u.id }}</td>
-      <td>{{ u.username }}</td>
-      <td>{{ u.role }}</td>
+    <tr *ngFor="let u of usersList" [ngClass]="{'admin' : (userConnecte && userConnecte.role === 'ADMIN') }">
+      <td [appColorRole]="u.role">{{ u.id }}</td>
+      <td [appColorRole]="u.role">{{ u.username }}</td>
+      <td [appColorRole]="u.role">{{ u.role }}</td>
     </tr>
   </app-table-stripped>
 
-  <app-btn [label]="btnAdd.label" [route]="btnAdd.route"></app-btn>
+  <app-btn *ngIf="btnAdd" [label]="btnAdd.label" [route]="btnAdd.route"></app-btn>
 
 </app-titre-b>

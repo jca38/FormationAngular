@@ -10,11 +10,9 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
-  // Utilisateur authentifié
-  private user:User = null;
-
-  // Pour savoir si l'utilisateur authentifié est ADMIN ou non
-  private isAdmin:Boolean = false;
+  // ID et username de l'utilisateur authentifié
+  private userId?:number = null;
+  private userName?:string = null;
 
   // Pour récupérer la liste de tous les utilisateurs
   private pCollection:Observable<User[]>;
@@ -24,11 +22,11 @@ export class UserService {
 
   constructor(private http:HttpClient) {
 
-    // Le service a pu perdre ses data comme "this.user" si l'utilisateur a fait ctrl+F5 et donc rechargé le composant donc réinitialisé le service...
-    // Dans ce cas comme on a pris soin de stocker le user authentifié dans le localStorage, on peut le restaurer ici dans le constructeur du service
-    if (!this.user && localStorage.getItem("user")) {
-      this.user = JSON.parse(localStorage.getItem("user"));
-      this.isAdmin = (this.user.role == "ADMIN");
+    // Le service a pu perdre ses data comme "this.userId" si l'utilisateur a fait ctrl+F5 et donc rechargé le composant donc réinitialisé le service...
+    // Dans ce cas comme on a pris soin de stocker le userId authentifié dans le localStorage, on peut le restaurer ici dans le constructeur du service
+    if (!this.userId && localStorage.getItem("userId")) {
+      this.userId = +localStorage.getItem("userId");
+      this.userName = localStorage.getItem("userName");
     }
 
     // fait appel au setter set collection..
@@ -66,26 +64,30 @@ export class UserService {
     )
   }
 
-  isAdministrateur():Boolean {
-    return this.isAdmin;
+  getUserId():number  {
+    return this.userId;
   }
 
-  getUser():User  {
-    return this.user;
+  getUserName():string
+  {
+    return this.userName;
   }
 
-  setUser(_user:User)  {
-    if (_user==null)
+  setUserId(id?:number)  {
+    if (id==null)
     {
-      this.user=null;
-      this.isAdmin=false;
-      localStorage.removeItem("user");
+      this.userId=null;
+      this.userName=null;
+      localStorage.removeItem("userId");
     }
     else
     {
-      this.user = _user;
-      this.isAdmin = (this.user.role == "ADMIN");
-      localStorage.setItem("user", JSON.stringify(_user));
+      this.userId = id;
+      localStorage.userId=id;
+      this.getById(id).subscribe((u:User) => {
+        this.userName = u.username;
+        localStorage.userName=u.username;
+      });
     }
   }
 }
