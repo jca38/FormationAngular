@@ -21,7 +21,8 @@ import { IconAddComponent } from './icon-add/icon-add.component';
     IconEditComponent,
     IconDeleteComponent,
     IconLogoutComponent,
-    IconFilterComponent
+    IconFilterComponent,
+    IconAddComponent
   ]
 })
 export class IconModule { }
