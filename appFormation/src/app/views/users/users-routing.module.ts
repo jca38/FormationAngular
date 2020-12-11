@@ -4,8 +4,8 @@ import { PageAddUserComponent } from './pages/page-add-user/page-add-user.compon
 import { PageUsersComponent } from './pages/page-users/page-users.component';
 
 const routes: Routes = [
-  { path:'', component:PageUsersComponent },
-  { path:'add', component:PageAddUserComponent },
+  { path:'', component:PageUsersComponent , data : { title : 'Users', subtitle :'Liste des users'} },
+  { path:'add', component:PageAddUserComponent , data : { title : 'Users', subtitle :'Ajout user'} }
 ];
 
 @NgModule({
