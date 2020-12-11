@@ -94,14 +94,14 @@
   "clients": [
     {
       "state": "Active",
-      "tva": 20,
+      "tva": 10,
       "name": "Modis222",
-      "ca": 120000,
-      "comment": "Un comment pour client modis55655",
+      "ca": 250000,
+      "comment": "Un comment pour client modis",
       "id": 2
     },
     {
-      "state": "Active",
+      "state": "Desactive",
       "tva": 20,
       "name": "Mobilo",
       "ca": 5000,
@@ -110,35 +110,11 @@
     },
     {
       "state": "Desactive",
-      "tva": 20,
-      "name": "Tete",
-      "ca": 75000,
-      "comment": "new!!",
-      "id": 6
-    },
-    {
-      "state": "Active",
-      "tva": 15,
-      "name": "toto",
-      "ca": 150,
-      "comment": "essai nouveau client",
-      "id": 7
-    },
-    {
-      "state": "Active",
-      "tva": 150,
-      "name": "titi",
-      "ca": 15,
-      "comment": "essai nouveau client actif",
-      "id": 8
-    },
-    {
-      "state": "Active",
       "tva": 10,
-      "name": "Mr BIDALLED",
-      "ca": 150,
+      "name": "toto2",
+      "ca": 200000,
       "comment": null,
-      "id": 9
+      "id": 6
     }
   ],
   "users": [

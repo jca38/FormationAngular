@@ -3,14 +3,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StateClient } from 'src/app/shared/enums/state-client.enum';
 import { Client } from 'src/app/shared/models/client.model';
 
-@Component({
-  selector: 'app-form-add-client',
-  templateUrl: './form-add-client.component.html',
-  styleUrls: ['./form-add-client.component.scss']
-})
-export class FormAddClientComponent implements OnInit {
 
-  // Uniquement pour si on veut pouvoir gérer de l'Edit d'un client sans ce même formulaire..
+@Component({
+  selector: 'app-form-add-edit-client',
+  templateUrl: './form-add-edit-client.component.html',
+  styleUrls: ['./form-add-edit-client.component.scss']
+})
+export class FormAddEditClientComponent implements OnInit {
+
+  // Uniquement utilisé lors du mode Edition d'un client
   @Input() client = new Client();
 
   @Output() clicked:EventEmitter<Client> = new EventEmitter();

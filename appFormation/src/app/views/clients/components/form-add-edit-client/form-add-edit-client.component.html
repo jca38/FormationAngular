@@ -1,0 +1,76 @@
+<div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Champ client - mode ADD -->
+    <div *ngIf="!client.id">
+
+      <div class="form-group">
+        <label for="name">Name (obligatoire, entre 5 et 10 caractères)</label>
+        <input formControlName="name" type="text" class="form-control" id="name"/>
+      </div>
+      <!--
+        touched signifie qu'on a modifié au moins une fois le champ,
+        donc pas quand on arrive sur la page
+      -->
+      <!--
+      <div *ngIf="form.get('name').invalid && form.get('name').touched" class="alert alert-danger">
+        Le nom du client est invalide
+      </div>
+      -->
+      <div *ngIf="form.get('name').errors?.required && form.get('name').touched" class="alert alert-danger">
+        Le nom du client est obligatoire
+      </div>
+      <div *ngIf="form.get('name').errors?.minlength && form.get('name').touched" class="alert alert-danger">
+        Le nom du client doit faire minimum 5 caractères
+      </div>
+      <div *ngIf="form.get('name').errors?.maxlength && form.get('name').touched" class="alert alert-danger">
+        Le nom du client doit faire maximum 10 caractères
+      </div>
+
+    </div>
+
+    <!-- Champ client - mode EDITION -->
+    <div class="form-group" *ngIf="client.id">
+      <label for="name">Name (obligatoire, entre 5 et 10 caractères)</label>
+      <input formControlName="name" type="text" class="form-control" id="name" disabled="true" />
+    </div>
+
+    <!-- Champ TVA -->
+    <div class="form-group">
+      <label for="tva">TVA (obligatoire)</label>
+      <input formControlName="tva" type="number" class="form-control" id="tva"/>
+    </div>
+    <!--
+      touched signifie qu'on a modifié au moins une fois le champ,
+      donc pas quand on arrive sur la page
+    -->
+    <div *ngIf="form.get('tva').invalid && form.get('tva').touched" class="alert alert-danger">
+      TVA invalide
+    </div>
+
+    <!-- Champ Etat -->
+    <div class="form-group">
+      <label for="state">Etat</label>
+      <select formControlName="state" class="form-control" id="state">
+        <option *ngFor="let s of states" [ngValue]="s">{{ s }}</option>
+      </select>
+    </div>
+
+     <!-- Champ CA -->
+     <div class="form-group">
+      <label for="ca">CA</label>
+      <input formControlName="ca" type="number" class="form-control" id="ca"/>
+    </div>
+
+    <!-- Champ Commentaire -->
+    <div class="form-group">
+      <label for="comment">Commentaire</label>
+      <textarea formControlName="comment" type="number" class="form-control" id="comment"></textarea>
+    </div>
+
+    <!-- Bouton SUBMIT -->
+    <button type="submit" [disabled]="form.invalid" class="btn btn-info">Sauvegarder</button>&nbsp;
+    <button type="button" class="btn btn-secondary" routerLink="/clients">Annuler</button>
+
+  </form>
+</div><!-- container -->
