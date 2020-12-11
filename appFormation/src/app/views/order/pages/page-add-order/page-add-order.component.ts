@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Order } from 'src/app/shared/models/order.model';
 import { OrderService } from '../../services/order.service';
 
@@ -17,10 +17,17 @@ export class PageAddOrderComponent implements OnInit {
 
   constructor(
     private orderService:OrderService,
-    private router:Router
+    private router:Router,
+    private route:ActivatedRoute
     ) { }
 
   ngOnInit(): void {
+
+    // this.route.paramMap.subscribe(params => {
+    //   if (params.get('id')) {
+    //     ....
+    //   }
+    // });
 
     this.title="Orders";
     this.subtitle="Ajout d'un order";
